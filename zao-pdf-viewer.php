@@ -38,10 +38,10 @@ define( 'ZPDFV_VERSION', '0.1.0' );
 /**
  * PDF Viewer Functions
  */
-require_once  __DIR__ .'/pdfviewer-functions.php';
+require_once  __DIR__ .'/includes/functions.php';
 
 /**
  * Admin Settings Page
  */
-require_once( 'pdfviewer-admin.php' );
+require_once( 'includes/classes/admin.php' );
 zpdfv_get_admin();
