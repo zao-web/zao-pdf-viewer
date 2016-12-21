@@ -1,15 +1,15 @@
 <?php
 /**
-* CMB2 Theme Options
-* @version 0.1.0
-*/
-class Pdfv_Admin {
+ * CMB2 Theme Options
+ * @version 0.1.0
+ */
+class ZPDF_Viewer_Admin {
 
 	/**
 	 * Option key, and option page slug
 	 * @var string
 	 */
-	private $key = 'zpdfv_options';
+	private $key = ZPDFV_OPT_KEY;
 
 	/**
 	 * Options page metabox id
@@ -30,12 +30,33 @@ class Pdfv_Admin {
 	protected $options_page = '';
 
 	/**
+	 * Holds an instance of the object
+	 *
+	 * @var ZPDF_Viewer_Admin
+	 */
+	protected static $instance = null;
+
+	/**
 	 * Constructor
 	 * @since 0.1.0
 	 */
-	public function __construct() {
+	protected function __construct() {
 		// Set our title
-		$this->title = __( 'PDF Viewer', 'pdfv' );
+		$this->title = __( 'Zao PDF Viewer', 'pdfv' );
+	}
+
+	/**
+	 * Returns the ZPDF_Viewer_Admin object
+	 *
+	 * @return ZPDF_Viewer_Admin
+	 */
+	public static function get_instance() {
+		if ( null === self::$instance ) {
+			self::$instance = new self();
+			self::$instance->hooks();
+		}
+
+		return self::$instance;
 	}
 
 	/**
@@ -71,7 +92,7 @@ class Pdfv_Admin {
 	* @since 0.1.0
 	*/
 	public function add_options_page() {
-		$this->options_page = add_menu_page( $this->title, $this->title, 'manage_options', $this->key, array( $this, 'admin_page_display' ) );
+		$this->options_page = add_options_page( $this->title, $this->title, 'manage_options', $this->key, array( $this, 'admin_page_display' ) );
 
 		// Include CMB CSS in the head to avoid FOUT
 		if ( $this->is_admin() ) {
@@ -98,21 +119,21 @@ class Pdfv_Admin {
 	 */
 	public function add_options_page_metabox() {
 		$cmb = new_cmb2_box( array(
-			'id'      => $this->metabox_id,
-			'hookup'  => false,
-			'show_on' => array(
+			'id'         => $this->metabox_id,
+			'hookup'     => false,
+			'cmb_styles' => false,
+			'show_on'    => array(
 				// These are important, don't remove
 				'key'   => 'options-page',
-				'value' => array( $this->key, )
+				'value' => array( $this->key ),
 			),
 		) );
 
 		$cmb->add_field( array(
-			'name'    => __( 'PDF Viewer Default Height', 'pdfv' ),
-			'desc'    => "",
+			'name'    => __( 'Default PDF viewer height', 'pdfv' ),
 			'id'      => 'zpdfv_height',
 			'type'    => 'text_number',
-			'default' => 1200
+			'default' => 432,
 		) );
 
 	}
@@ -141,20 +162,4 @@ class Pdfv_Admin {
 		}
 		throw new Exception( 'Invalid property: ' . $field );
 	}
-}
-
-/**
- * Helper function to get/return the zpdfv_Admin object
- * @since  0.1.0
- * @return zpdfv_Admin object
- */
-function zpdfv_get_admin() {
-	static $zpdfv_admin = null;
-
-	if ( null === $zpdfv_admin ) {
-		$zpdfv_admin = new Pdfv_Admin();
-		$zpdfv_admin->hooks();
-	}
-
-	return $zpdfv_admin;
 }
