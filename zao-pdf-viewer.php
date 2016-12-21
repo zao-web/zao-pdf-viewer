@@ -36,31 +36,38 @@
 define( 'ZPDFV_VERSION', '0.1.0' );
 define( 'ZPDFV_OPT_KEY', 'zpdfv_options' );
 define( 'ZPDFV_URL', plugins_url( '/', __FILE__ ) );
+define( 'ZPDFV_DIR', trailingslashit( dirname( __FILE__ ) ) );
 
 /**
  * PDF Viewer Functions
  */
 require_once  __DIR__ .'/includes/functions.php';
 
+/**
+ * Autoloads ZPDF_Viewer_ class files when they are called.
+ * @since  0.1.0
+ * @param  string $class_name Name of the class being requested
+ */
+function zpdf_autoload_classes( $class_name ) {
+	if ( 0 === strpos( $class_name, 'ZPDF_Viewer_' ) ) {
+		$path = 'includes/classes';
+		$filename = strtolower( str_replace( array( 'ZPDF_Viewer_', '_' ), array( '', '-' ), $class_name ) );
+
+		include_once ZPDFV_DIR . "$path/{$filename}.php";
+	}
+}
+spl_autoload_register( 'zpdf_autoload_classes' );
+
 function zpdf_init_objects() {
 	if ( is_admin() ) {
-
 		/**
 		 * Admin Settings Page
 		 */
-		require_once( 'includes/classes/admin.php' );
-
-		// Kick off the admin object.
 		ZPDF_Viewer_Admin::get_instance();
-
 	} else {
-
 		/**
 		 * Frontend Object
 		 */
-		require_once( 'includes/classes/frontend.php' );
-
-		// Kick off the frontend object.
 		ZPDF_Viewer_Frontend::get_instance();
 	}
 }
