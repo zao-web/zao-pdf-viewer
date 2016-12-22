@@ -4,7 +4,7 @@ PDF Viewer shortcode plugin. Uses [Mozilla's pdf.js](https://github.com/mozilla/
 
 The `pdfviewer` shortcode supports either an `id` attribute for displaying a viewer for a pdf in the media library, or `url` for displaying any pdf URL (as long as it is on the same domain), and a `height` attribute for determining the height ratio of the viewer iframe. The plugin has an options page to define the default fallback height ratio.
 
-The plugin also supports [Shortcake (Shortcode UI)](https://github.com/wp-shortcake/shortcake), so if you have that installed, you will also havea a handy shortcode UI for setting the shortcode parameters and selecting a media library PDF.
+The plugin also supports [Shortcake (Shortcode UI)](https://github.com/wp-shortcake/shortcake), so if you have that installed, you will also have a handy shortcode UI for setting the shortcode parameters and selecting a media library PDF.
 
 If you prefer to use in your template or plugin, you can do so like:
 
