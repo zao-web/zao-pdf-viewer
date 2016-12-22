@@ -28,7 +28,7 @@ See https://github.com/adobe-type-tools/cmap-resources
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Zao PDF Viewer</title>
 
-	<?php if ( $css = apply_filters( 'zaopdf_stylesheet', ZPDFV_URL . 'pdfjs/web/viewer.css' ) ) : ?>
+	<?php if ( $css = apply_filters( 'zaopdf_stylesheet', ZPDFV_URL . 'pdfjs/web/viewer.css?v='. ZPDFV_VERSION ) ) : ?>
 		<link rel="stylesheet" href="<?php echo $css; ?>">
 	<?php endif; ?>
 
@@ -36,9 +36,9 @@ See https://github.com/adobe-type-tools/cmap-resources
 	<link rel="resource" type="application/l10n" href="<?php echo ZPDFV_URL . 'pdfjs/web/locale/locale.properties'; ?>">
 	<script type="text/javascript">
 		window.PDFJS = window.PDFJS || {};
-		window.PDFJS.workerSrc = '<?php echo apply_filters( 'zaopdf_worker_js', ZPDFV_URL . 'pdfjs/build/pdf.worker.js' ); ?>';
+		window.PDFJS.workerSrc = '<?php echo apply_filters( 'zaopdf_worker_js', ZPDFV_URL . 'pdfjs/build/pdf.worker.js?v='. ZPDFV_VERSION ); ?>';
 	</script>
-	<script src="<?php echo apply_filters( 'zaopdf_js', ZPDFV_URL . 'pdfjs/web/pdf.viewer.js' ); ?>"></script>
+	<script src="<?php echo apply_filters( 'zaopdf_js', ZPDFV_URL . 'pdfjs/web/pdf.viewer.js?v='. ZPDFV_VERSION ); ?>"></script>
 
 	<?php do_action( 'zaopdf_head' ); ?>
 </head>
