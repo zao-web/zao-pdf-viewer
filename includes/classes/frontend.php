@@ -128,7 +128,7 @@ class ZPDF_Viewer_Frontend {
 	 * @return void
 	 */
 	public function maybe_load_viewer() {
-		$parts = explode( '?', site_url( $_SERVER['REQUEST_URI'] ) );
+		$parts = explode( '?', network_site_url( $_SERVER['REQUEST_URI'] ) );
 
 		if ( 0 === strpos( $parts[0], self::zpdf_url() ) && ! empty( $_REQUEST['file'] ) ) {
 
