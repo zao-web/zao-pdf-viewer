@@ -74,6 +74,7 @@ To override the viewer's stylesheet completely, you would use the `zaopdf_styles
 
 ##### Actions
 
+* `zaopdf_init` - Fires when the plugin objects are initiated.
 * `zaopdf_head` - Hook in the head of the viewer html document, similar to `wp_head`.
 * `zaopdf_footer` - Hook just before the closing `</body>` tag in the viewer html document, similar to `wp_footer`.
 

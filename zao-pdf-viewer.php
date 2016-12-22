@@ -71,5 +71,7 @@ function zpdf_init_objects() {
 		 */
 		ZPDF_Viewer_Frontend::get_instance();
 	}
+
+	do_action( 'zaopdf_init' );
 }
 add_action( 'plugins_loaded', 'zpdf_init_objects' );
