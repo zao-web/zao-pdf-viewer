@@ -44,19 +44,19 @@ See https://github.com/adobe-type-tools/cmap-resources
 		<div id="sidebarContainer">
 			<div id="toolbarSidebar">
 				<div class="splitToolbarButton toggled">
-					<button id="viewThumbnail" class="toolbarButton group toggled" title="Show Thumbnails" tabindex="2" data-l10n-id="thumbs">
+					<button id="viewThumbnail" class="<?php if ( ! apply_filters( 'zao_button_enable_viewThumbnail', true ) ) :?>hidden<?php endif; ?> toolbarButton group toggled" title="Show Thumbnails" tabindex="2" data-l10n-id="thumbs">
 						<span data-l10n-id="thumbs_label">Thumbnails</span>
 					</button>
-					<button id="viewOutline" class="toolbarButton group" title="Show Document Outline (double-click to expand/collapse all items)" tabindex="3" data-l10n-id="document_outline">
+					<button id="viewOutline" class="<?php if ( ! apply_filters( 'zao_button_enable_viewOutline', true ) ) :?>hidden<?php endif; ?> toolbarButton group" title="Show Document Outline (double-click to expand/collapse all items)" tabindex="3" data-l10n-id="document_outline">
 						<span data-l10n-id="document_outline_label">Document Outline</span>
 					</button>
-					<button id="viewAttachments" class="toolbarButton group" title="Show Attachments" tabindex="4" data-l10n-id="attachments">
+					<button id="viewAttachments" class="<?php if ( ! apply_filters( 'zao_button_enable_viewAttachments', true ) ) :?>hidden<?php endif; ?> toolbarButton group" title="Show Attachments" tabindex="4" data-l10n-id="attachments">
 						<span data-l10n-id="attachments_label">Attachments</span>
 					</button>
 				</div>
 			</div>
 			<div id="sidebarContent">
-				<div id="thumbnailView"></div>
+				<div id="thumbnailView" <?php if ( ! apply_filters( 'zao_button_enable_viewThumbnail', true ) ) :?>class="hidden"<?php endif; ?>></div>
 				<div id="outlineView" class="hidden"></div>
 				<div id="attachmentsView" class="hidden"></div>
 			</div>
@@ -85,53 +85,53 @@ See https://github.com/adobe-type-tools/cmap-resources
 
 			<div id="secondaryToolbar" class="secondaryToolbar hidden doorHangerRight">
 				<div id="secondaryToolbarButtonContainer">
-					<button id="secondaryPresentationMode" class="secondaryToolbarButton presentationMode visibleLargeView" title="Switch to Presentation Mode" tabindex="51" data-l10n-id="presentation_mode">
+					<button id="secondaryPresentationMode" class="<?php if ( ! apply_filters( 'zao_button_enable_presentationMode', true ) ) :?>hidden<?php endif; ?> secondaryToolbarButton presentationMode visibleLargeView" title="Switch to Presentation Mode" tabindex="51" data-l10n-id="presentation_mode">
 						<span data-l10n-id="presentation_mode_label">Presentation Mode</span>
 					</button>
 
-					<button id="secondaryOpenFile" class="secondaryToolbarButton openFile visibleLargeView" title="Open File" tabindex="52" data-l10n-id="open_file">
+					<button id="secondaryOpenFile" class="<?php if ( ! apply_filters( 'zao_button_enable_openFile', true ) ) :?>hidden<?php endif; ?> secondaryToolbarButton openFile visibleLargeView" title="Open File" tabindex="52" data-l10n-id="open_file">
 						<span data-l10n-id="open_file_label">Open</span>
 					</button>
 
-					<button id="secondaryPrint" class="secondaryToolbarButton print visibleMediumView" title="Print" tabindex="53" data-l10n-id="print">
+					<button id="secondaryPrint" class="<?php if ( ! apply_filters( 'zao_button_enable_print', true ) ) :?>hidden<?php endif; ?> secondaryToolbarButton print visibleMediumView" title="Print" tabindex="53" data-l10n-id="print">
 						<span data-l10n-id="print_label">Print</span>
 					</button>
 
-					<button id="secondaryDownload" class="secondaryToolbarButton download visibleMediumView" title="Download" tabindex="54" data-l10n-id="download">
+					<button id="secondaryDownload" class="<?php if ( ! apply_filters( 'zao_button_enable_download', true ) ) :?>hidden<?php endif; ?> secondaryToolbarButton download visibleMediumView" title="Download" tabindex="54" data-l10n-id="download">
 						<span data-l10n-id="download_label">Download</span>
 					</button>
 
-					<a href="#" id="secondaryViewBookmark" class="secondaryToolbarButton bookmark visibleSmallView" title="Current view (copy or open in new window)" tabindex="55" data-l10n-id="bookmark">
+					<a href="#" id="secondaryViewBookmark" class="<?php if ( ! apply_filters( 'zao_button_enable_viewBookmark', true ) ) :?>hidden<?php endif; ?> secondaryToolbarButton bookmark visibleSmallView" title="Current view (copy or open in new window)" tabindex="55" data-l10n-id="bookmark">
 						<span data-l10n-id="bookmark_label">Current View</span>
 					</a>
 
 					<div class="horizontalToolbarSeparator visibleLargeView"></div>
 
-					<button id="firstPage" class="secondaryToolbarButton firstPage" title="Go to First Page" tabindex="56" data-l10n-id="first_page">
+					<button id="firstPage" class="<?php if ( ! apply_filters( 'zao_button_enable_firstPage', true ) ) :?>hidden<?php endif; ?> secondaryToolbarButton firstPage" title="Go to First Page" tabindex="56" data-l10n-id="first_page">
 						<span data-l10n-id="first_page_label">Go to First Page</span>
 					</button>
-					<button id="lastPage" class="secondaryToolbarButton lastPage" title="Go to Last Page" tabindex="57" data-l10n-id="last_page">
+					<button id="lastPage" class="<?php if ( ! apply_filters( 'zao_button_enable_lastPage', true ) ) :?>hidden<?php endif; ?> secondaryToolbarButton lastPage" title="Go to Last Page" tabindex="57" data-l10n-id="last_page">
 						<span data-l10n-id="last_page_label">Go to Last Page</span>
 					</button>
 
 					<div class="horizontalToolbarSeparator"></div>
 
-					<button id="pageRotateCw" class="secondaryToolbarButton rotateCw" title="Rotate Clockwise" tabindex="58" data-l10n-id="page_rotate_cw">
+					<button id="pageRotateCw" class="<?php if ( ! apply_filters( 'zao_button_enable_pageRotateCw', true ) ) :?>hidden<?php endif; ?> secondaryToolbarButton rotateCw" title="Rotate Clockwise" tabindex="58" data-l10n-id="page_rotate_cw">
 						<span data-l10n-id="page_rotate_cw_label">Rotate Clockwise</span>
 					</button>
-					<button id="pageRotateCcw" class="secondaryToolbarButton rotateCcw" title="Rotate Counterclockwise" tabindex="59" data-l10n-id="page_rotate_ccw">
+					<button id="pageRotateCcw" class="<?php if ( ! apply_filters( 'zao_button_enable_pageRotateCcw', true ) ) :?>hidden<?php endif; ?> secondaryToolbarButton rotateCcw" title="Rotate Counterclockwise" tabindex="59" data-l10n-id="page_rotate_ccw">
 						<span data-l10n-id="page_rotate_ccw_label">Rotate Counterclockwise</span>
 					</button>
 
 					<div class="horizontalToolbarSeparator"></div>
 
-					<button id="toggleHandTool" class="secondaryToolbarButton handTool" title="Enable hand tool" tabindex="60" data-l10n-id="hand_tool_enable">
+					<button id="toggleHandTool" class="<?php if ( ! apply_filters( 'zao_button_enable_toggleHandTool', true ) ) :?>hidden<?php endif; ?> secondaryToolbarButton handTool" title="Enable hand tool" tabindex="60" data-l10n-id="hand_tool_enable">
 						<span data-l10n-id="hand_tool_enable_label">Enable hand tool</span>
 					</button>
 
 					<div class="horizontalToolbarSeparator"></div>
 
-					<button id="documentProperties" class="secondaryToolbarButton documentProperties" title="Document Properties…" tabindex="61" data-l10n-id="document_properties">
+					<button id="documentProperties" class="<?php if ( ! apply_filters( 'zao_button_enable_documentProperties', true ) ) :?>hidden<?php endif; ?> secondaryToolbarButton documentProperties" title="Document Properties…" tabindex="61" data-l10n-id="document_properties">
 						<span data-l10n-id="document_properties_label">Document Properties…</span>
 					</button>
 				</div>
@@ -141,14 +141,17 @@ See https://github.com/adobe-type-tools/cmap-resources
 				<div id="toolbarContainer">
 					<div id="toolbarViewer">
 						<div id="toolbarViewerLeft">
-							<button id="sidebarToggle" class="toolbarButton" title="Toggle Sidebar" tabindex="11" data-l10n-id="toggle_sidebar">
+							<button id="sidebarToggle" class="<?php if ( ! apply_filters( 'zao_button_enable_sidebarToggle', true ) ) :?>hidden<?php endif; ?> toolbarButton" title="Toggle Sidebar" tabindex="11" data-l10n-id="toggle_sidebar">
 								<span data-l10n-id="toggle_sidebar_label">Toggle Sidebar</span>
 							</button>
+
 							<div class="toolbarButtonSpacer"></div>
-							<button id="viewFind" class="toolbarButton group hiddenSmallView" title="Find in Document" tabindex="12" data-l10n-id="findbar">
+
+							<button id="viewFind" class="<?php if ( ! apply_filters( 'zao_button_enable_viewFind', true ) ) :?>hidden<?php endif; ?> toolbarButton group hiddenSmallView" title="Find in Document" tabindex="12" data-l10n-id="findbar">
 								<span data-l10n-id="findbar_label">Find</span>
 							</button>
-							<div class="splitToolbarButton">
+
+							<div class="<?php if ( ! apply_filters( 'zao_button_enable_pagination', true ) ) :?>hidden<?php endif; ?> splitToolbarButton">
 								<button class="toolbarButton pageUp" title="Previous Page" id="previous" tabindex="13" data-l10n-id="previous">
 									<span data-l10n-id="previous_label">Previous</span>
 								</button>
@@ -157,37 +160,38 @@ See https://github.com/adobe-type-tools/cmap-resources
 									<span data-l10n-id="next_label">Next</span>
 								</button>
 							</div>
-							<input type="number" id="pageNumber" class="toolbarField pageNumber" title="Page" value="1" size="4" min="1" tabindex="15" data-l10n-id="page">
-							<span id="numPages" class="toolbarLabel"></span>
+
+							<input type="number" id="pageNumber" class="<?php if ( ! apply_filters( 'zao_button_enable_paginationInput', true ) ) :?>hidden<?php endif; ?> toolbarField pageNumber" title="Page" value="1" size="4" min="1" tabindex="15" data-l10n-id="page">
+							<span id="numPages" class="<?php if ( ! apply_filters( 'zao_button_enable_paginationInput', true ) ) :?>hidden<?php endif; ?> toolbarLabel"></span>
 						</div>
 						<div id="toolbarViewerRight">
-							<button id="presentationMode" class="toolbarButton presentationMode hiddenLargeView" title="Switch to Presentation Mode" tabindex="31" data-l10n-id="presentation_mode">
+							<button id="presentationMode" class="<?php if ( ! apply_filters( 'zao_button_enable_presentationMode', true ) ) :?>hidden<?php endif; ?> toolbarButton presentationMode hiddenLargeView" title="Switch to Presentation Mode" tabindex="31" data-l10n-id="presentation_mode">
 								<span data-l10n-id="presentation_mode_label">Presentation Mode</span>
 							</button>
 
-							<button id="openFile" class="toolbarButton openFile hiddenLargeView" title="Open File" tabindex="32" data-l10n-id="open_file">
+							<button id="openFile" class="<?php if ( ! apply_filters( 'zao_button_enable_openFile', true ) ) :?>hidden<?php endif; ?> toolbarButton openFile hiddenLargeView" title="Open File" tabindex="32" data-l10n-id="open_file">
 								<span data-l10n-id="open_file_label">Open</span>
 							</button>
 
-							<button id="print" class="toolbarButton print hiddenMediumView" title="Print" tabindex="33" data-l10n-id="print">
+							<button id="print" class="<?php if ( ! apply_filters( 'zao_button_enable_print', true ) ) :?>hidden<?php endif; ?> toolbarButton print hiddenMediumView" title="Print" tabindex="33" data-l10n-id="print">
 								<span data-l10n-id="print_label">Print</span>
 							</button>
 
-							<button id="download" class="toolbarButton download hiddenMediumView" title="Download" tabindex="34" data-l10n-id="download">
+							<button id="download" class="<?php if ( ! apply_filters( 'zao_button_enable_download', true ) ) :?>hidden<?php endif; ?> toolbarButton download hiddenMediumView" title="Download" tabindex="34" data-l10n-id="download">
 								<span data-l10n-id="download_label">Download</span>
 							</button>
-							<a href="#" id="viewBookmark" class="toolbarButton bookmark hiddenSmallView" title="Current view (copy or open in new window)" tabindex="35" data-l10n-id="bookmark">
+							<a href="#" id="viewBookmark" class="<?php if ( ! apply_filters( 'zao_button_enable_viewBookmark', true ) ) :?>hidden<?php endif; ?> toolbarButton bookmark hiddenSmallView" title="Current view (copy or open in new window)" tabindex="35" data-l10n-id="bookmark">
 								<span data-l10n-id="bookmark_label">Current View</span>
 							</a>
 
 							<div class="verticalToolbarSeparator hiddenSmallView"></div>
 
-							<button id="secondaryToolbarToggle" class="toolbarButton" title="Tools" tabindex="36" data-l10n-id="tools">
+							<button id="secondaryToolbarToggle" class="<?php if ( ! apply_filters( 'zao_button_enable_secondaryToolbarToggle', true ) ) :?>hidden<?php endif; ?> toolbarButton" title="Tools" tabindex="36" data-l10n-id="tools">
 								<span data-l10n-id="tools_label">Tools</span>
 							</button>
 						</div>
 						<div id="toolbarViewerMiddle">
-							<div class="splitToolbarButton">
+							<div class="<?php if ( ! apply_filters( 'zao_button_enable_zoomToggles', true ) ) :?>hidden<?php endif; ?> splitToolbarButton">
 								<button id="zoomOut" class="toolbarButton zoomOut" title="Zoom Out" tabindex="21" data-l10n-id="zoom_out">
 									<span data-l10n-id="zoom_out_label">Zoom Out</span>
 								</button>
@@ -196,7 +200,7 @@ See https://github.com/adobe-type-tools/cmap-resources
 									<span data-l10n-id="zoom_in_label">Zoom In</span>
 								</button>
 							</div>
-							<span id="scaleSelectContainer" class="dropdownToolbarButton">
+							<span id="scaleSelectContainer" class="<?php if ( ! apply_filters( 'zao_button_enable_scaleSelect', true ) ) :?>hidden<?php endif; ?> dropdownToolbarButton">
 								<select id="scaleSelect" title="Zoom" tabindex="23" data-l10n-id="zoom">
 									<option id="pageAutoOption" title="" value="auto" selected="selected" data-l10n-id="page_scale_auto">Automatic Zoom</option>
 									<option id="pageActualOption" title="" value="page-actual" data-l10n-id="page_scale_actual">Actual Size</option>
