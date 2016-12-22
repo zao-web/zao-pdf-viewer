@@ -21,7 +21,7 @@ Shortcode:
 ![admin shortcode](https://raw.githubusercontent.com/zao-web/zao-pdf-viewer/master/screenshot-1.png)
 
 With Shortcode UI:
-![With Shortcode UI](https://raw.githubusercontent.com/zao-web/zao-pdf-viewer/master/screenshot-3.png)
+![With Shortcode UI](https://raw.githubusercontent.com/zao-web/zao-pdf-viewer/master/screenshot-3.gif)
 
 ### Hooks
 
