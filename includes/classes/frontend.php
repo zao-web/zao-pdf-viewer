@@ -85,12 +85,15 @@ class ZPDF_Viewer_Frontend {
 			return $output;
 		}
 
-		if ( 1 === $count ) {
-			$output .= '<style type="text/css">iframe.zpdf-iframe.noscrolling { height: '. absint( $atts['height'] ) .'px; }</style>';
+		$height = $atts['height'];
+		$reversed = strrev( $height );
+		$is_percentage = 0 === strpos( $reversed, '%' );
+		if ( 0 !== strpos( $reversed, 'xp' ) && ! $is_percentage ) {
+			$height .= 'px';
 		}
 
 		// A bit better than inline styling.
-		$output .= '<style type="text/css">#zpdf-'. $count .' { height: '. absint( $atts['height'] ) .'px; } </style>';
+		$output .= '<style type="text/css">#zpdf-'. $count .', #zpdf-'. $count .' iframe { height: '. sanitize_text_field( $height ) .'; } </style>';
 
 		$src = add_query_arg( 'file', urlencode( esc_url_raw( $url ) ), ZPDFV_URL . 'pdfjs/web/viewer.html' );
 
