@@ -70,7 +70,7 @@ class ZPDF_Viewer_Frontend {
 		$atts = shortcode_atts( array(
 			'url'    => '',
 			'id'     => 0,
-			'height' => absint( zpdfv_get_option( 'zpdfv_height', 432 ) ),
+			'height' => floatval( zpdfv_get_option( 'zpdfv_height', 56.25 ) ),
 		), $atts, $this->tag );
 
 		// No PDF URL or Attachment ID, then we will just bail.
@@ -89,15 +89,23 @@ class ZPDF_Viewer_Frontend {
 			return $output;
 		}
 
-		$height = $atts['height'];
-		$reversed = strrev( $height );
-		$is_percentage = 0 === strpos( $reversed, '%' );
-		if ( 0 !== strpos( $reversed, 'xp' ) && ! $is_percentage ) {
-			$height .= 'px';
-		}
-
-		// A bit better than inline styling.
-		$output .= '<style type="text/css">#zpdf-'. $count .', #zpdf-'. $count .' iframe { height: '. sanitize_text_field( $height ) .'; } </style>';
+		$output .= '
+		<style type="text/css">
+			#zpdf-'. $count .' {
+				position: relative;
+				padding-bottom: '. floatval( $atts['height'] ) .'%;
+				padding-top: 32px; /* height of the toolbar */
+				height: 0;
+			}
+			#zpdf-'. $count .' iframe {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+			}
+		</style>
+		';
 
 		$src = add_query_arg( 'file', urlencode( esc_url_raw( $url ) ), self::zpdf_url() );
 

@@ -130,13 +130,29 @@ class ZPDF_Viewer_Admin {
 		) );
 
 		$cmb->add_field( array(
-			'name'    => __( 'Default PDF viewer height', 'pdfv' ),
-			'desc'    => __( 'Enter with px or %. Default will be px.', 'pdfv' ),
+			'name'    => __( 'Default PDF viewer height ratio', 'pdfv' ),
+			'desc'    => '%',
 			'id'      => 'zpdfv_height',
-			'type'    => 'text_small',
-			'default' => 432,
+			'type'    => 'text_number',
+			'default' => '56.25',
+			'after'   => '<p class="cmb2-metabox-description">'. __( 'Enter the ratio percentage. Default (56.25%) is 16/9 ratio.', 'pdfv' ) .'</p>',
 		) );
 
+	}
+
+	public function render_text_number( $field, $escaped_value, $object_id, $object_type, $type ) {
+		echo $type>input( array(
+			'class' => 'cmb2-text-small',
+			'type'  => 'number',
+			'desc' => $type>_desc(),
+		) );
+	}
+
+	// sanitize the field
+	public function sanitize_text_number( $null, $new ) {
+		$new = preg_replace( "/[^0-9]/", "", $new );
+
+		return $new;
 	}
 
 	/**
