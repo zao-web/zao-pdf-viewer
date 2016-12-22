@@ -23,9 +23,18 @@ Shortcode:
 With Shortcode UI:
 ![With Shortcode UI](https://raw.githubusercontent.com/zao-web/zao-pdf-viewer/master/screenshot-3.gif)
 
-### Hooks
+### Developer Features
 
-#### Filters
+#### Custom viewer stylesheet or javascript.
+
+To load your own additional stylesheet to the viewer, add a `style.css` file to a new `/zao-pdf-viewer/` directory in your theme.
+To load your own additional javascript file to the viewer, add a `viewer-custom.js` file to that same `/zao-pdf-viewer/` directory in your theme.
+
+To override the viewer's stylesheet completely, you would use the `zaopdf_stylesheet` filter, documented below.
+
+#### Hooks
+
+##### Filters
 
 * `shortcode_atts_pdfviewer` - This is the default filter provided by the `shortcode_atts()` function. It runs with each shortcode, and allows you to override the shortcode parameters after they are parsed.
 * `zaopdf_iframe_css` - Runs with each shortcode, and allows you to override the output of a specific shortcode's inline css.
@@ -63,12 +72,12 @@ With Shortcode UI:
 	* `zaopdf_button_enable_zoomToggles`
 	* `zaopdf_button_enable_scaleSelect`
 
-#### Actions
+##### Actions
 
 * `zaopdf_head` - Hook in the head of the viewer html document, similar to `wp_head`.
 * `zaopdf_footer` - Hook just before the closing `</body>` tag in the viewer html document, similar to `wp_footer`.
 
-### Sample Snippets
+#### Sample Snippets
 
 * Disable the download, print, and open-file buttons:
 
