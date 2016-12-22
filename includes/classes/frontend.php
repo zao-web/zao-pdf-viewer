@@ -64,7 +64,7 @@ class ZPDF_Viewer_Frontend {
 	 * @return string        The pdfviewer iframe or blank if it failed to find a pdf source.
 	 */
 	public function output( $atts = array() ) {
-		static $count = 1;
+		static $index = 1;
 		$output = '';
 
 		$atts = shortcode_atts( array(
@@ -78,40 +78,44 @@ class ZPDF_Viewer_Frontend {
 			return $output;
 		}
 
-		$url = $atts['url'];
+		$atts['index'] = $index;
 
 		if ( $atts['id'] ) {
-			$url = wp_get_attachment_url( absint( $atts['id'] ), 'full' );
+			$atts['url'] = wp_get_attachment_url( absint( $atts['id'] ), 'full' );
 		}
 
 		// If we couldn't find a PDF URL, then we bail.
-		if ( empty( $url ) ) {
+		if ( empty( $atts['url'] ) ) {
 			return $output;
 		}
 
-		$output .= '
-		<style type="text/css">
-			#zpdf-'. $count .' {
-				position: relative;
-				padding-bottom: '. floatval( $atts['height'] ) .'%;
-				padding-top: 32px; /* height of the toolbar */
-				height: 0;
-			}
-			#zpdf-'. $count .' iframe {
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-			}
-		</style>
+		$css = '
+		#zpdf-'. $index .' {
+			position: relative;
+			padding-bottom: '. floatval( $atts['height'] ) .'%;
+			padding-top: 32px; /* height of the toolbar */
+			height: 0;
+		}
+		#zpdf-'. $index .' iframe {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		}
 		';
 
-		$src = add_query_arg( 'file', urlencode( esc_url_raw( $url ) ), self::zpdf_url() );
+		$css = apply_filters( 'zaopdf_iframe_css', $css, $atts );
 
-		$output .= '<div id="zpdf-'. $count .'"><iframe class="noscrolling zpdf-iframe" width="100%" height="100%" scrolling="no" frameborder="0" name="pdfv" src="'. esc_url( $src ) . '"></iframe></div>';
+		$output .= '<style type="text/css">'. $css .'</style>';
 
-		$count++;
+		$src = add_query_arg( 'file', urlencode( esc_url_raw( $atts['url'] ) ), self::zpdf_url() );
+
+		$iframe = '<div id="zpdf-'. $index .'"><iframe class="noscrolling zpdf-iframe" width="100%" height="100%" scrolling="no" frameborder="0" name="pdfv" src="'. esc_url( $src ) . '"></iframe></div>';
+
+		$output .= apply_filters( 'zaopdf_iframe_markup', $iframe, $atts );
+
+		$index++;
 
 		return $output;
 	}
