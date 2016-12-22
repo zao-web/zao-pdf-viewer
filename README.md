@@ -27,9 +27,13 @@ With Shortcode UI:
 
 #### Filters
 
+* `shortcode_atts_pdfviewer` - This is the default filter provided by the `shortcode_atts()` function. It runs with each shortcode, and allows you to override the shortcode parameters after they are parsed.
+* `zaopdf_iframe_css` - Runs with each shortcode, and allows you to override the output of a specific shortcode's inline css.
+* `zaopdf_iframe_markup` - Runs with each shortcode, and allows you to override the output of a specific shortcode's iframe markup.
 * `zaopdf_stylesheet` - Filters the main Zao PDF Viewer stylesheet. Replace with a URL to your own stylesheet to override.
-* `zaopdf_js` - Filters the main Zao PDF Viewer javascript. Replace with a URL to your own javascript file to override. This is the main functionality of the viewer, so proceed with caution.
-* The following filters can each be used to disable a button in the Zao PDF Viewer.
+* `zaopdf_js` - Filters the main Zao PDF Viewer javascript URL. Replace with a URL to your own javascript file to override. This is the main functionality of the viewer, so proceed with caution.
+* `zaopdf_worker_js` - Filters the Zao PDF Viewer worker javascript URL. Replace with a URL to your own javascript file to override. This is primary functionality of the viewer, so proceed with caution.
+* The following filters can each be used to [disable a button in the Zao PDF Viewer](#sample-snippets).
 	* `zaopdf_button_enable_viewThumbnail`
 	* `zaopdf_button_enable_viewOutline`
 	* `zaopdf_button_enable_viewAttachments`
