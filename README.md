@@ -33,7 +33,7 @@ With Shortcode UI:
 * `zaopdf_stylesheet` - Filters the main Zao PDF Viewer stylesheet. Replace with a URL to your own stylesheet to override.
 * `zaopdf_js` - Filters the main Zao PDF Viewer javascript URL. Replace with a URL to your own javascript file to override. This is the main functionality of the viewer, so proceed with caution.
 * `zaopdf_worker_js` - Filters the Zao PDF Viewer worker javascript URL. Replace with a URL to your own javascript file to override. This is primary functionality of the viewer, so proceed with caution.
-* The following filters can each be used to [disable a button in the Zao PDF Viewer](#sample-snippets).
+* The following filters can each be used to [disable a button in the Zao PDF Viewer](https://github.com/zao-web/zao-pdf-viewer/blob/master/README.md#sample-snippets).
 	* `zaopdf_button_enable_viewThumbnail`
 	* `zaopdf_button_enable_viewOutline`
 	* `zaopdf_button_enable_viewAttachments`
