@@ -161,7 +161,7 @@ class ZPDF_Viewer_Frontend {
 	 * @return string  The viewer URL.
 	 */
 	public static function zpdf_url() {
-		return ZPDFV_URL . 'pdfjs/web/view';
+		return site_url( 'pdfjs-view' );
 	}
 
 	/**

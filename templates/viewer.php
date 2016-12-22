@@ -34,6 +34,10 @@ See https://github.com/adobe-type-tools/cmap-resources
 
 	<!-- This snippet is used in production (included from viewer.html) -->
 	<link rel="resource" type="application/l10n" href="<?php echo ZPDFV_URL . 'pdfjs/web/locale/locale.properties'; ?>">
+	<script type="text/javascript">
+		window.PDFJS = window.PDFJS || {};
+		window.PDFJS.workerSrc = '<?php echo apply_filters( 'zaopdf_worker_js', ZPDFV_URL . 'pdfjs/build/pdf.worker.js' ); ?>';
+	</script>
 	<script src="<?php echo apply_filters( 'zaopdf_js', ZPDFV_URL . 'pdfjs/web/pdf.viewer.js' ); ?>"></script>
 
 	<?php do_action( 'zaopdf_head' ); ?>
