@@ -46,6 +46,10 @@ class ZPDF_Viewer_Frontend {
 	 */
 	public function hooks() {
 		add_shortcode( $this->tag, array( $this, 'output' ) );
+
+		if ( isset( $_REQUEST['file'], $_SERVER['REQUEST_URI'] ) ) {
+			add_action( 'template_redirect', array( $this, 'maybe_load_viewer' ), 9999 );
+		}
 	}
 
 	/**
@@ -95,13 +99,57 @@ class ZPDF_Viewer_Frontend {
 		// A bit better than inline styling.
 		$output .= '<style type="text/css">#zpdf-'. $count .', #zpdf-'. $count .' iframe { height: '. sanitize_text_field( $height ) .'; } </style>';
 
-		$src = add_query_arg( 'file', urlencode( esc_url_raw( $url ) ), ZPDFV_URL . 'pdfjs/web/viewer.html' );
+		$src = add_query_arg( 'file', urlencode( esc_url_raw( $url ) ), self::zpdf_url() );
 
 		$output .= '<div id="zpdf-'. $count .'"><iframe class="noscrolling zpdf-iframe" width="100%" height="100%" scrolling="no" frameborder="0" name="pdfv" src="'. esc_url( $src ) . '"></iframe></div>';
 
 		$count++;
 
 		return $output;
+	}
+
+	/**
+	 * Load the PDF viewer if the viewer URL has been entered and there is a file query var.
+	 *
+	 * @since  0.1.0
+	 *
+	 * @return void
+	 */
+	public function maybe_load_viewer() {
+		$parts = explode( '?', site_url( $_SERVER['REQUEST_URI'] ) );
+
+		if ( 0 === strpos( $parts[0], self::zpdf_url() ) && ! empty( $_REQUEST['file'] ) ) {
+
+			add_action( 'zaopdf_head', array( $this, 'maybe_load_theme_stylesheet' ) );
+
+			include_once ZPDFV_DIR . 'templates/viewer.php';
+			exit;
+		}
+	}
+
+	/**
+	 * If the theme has a /zao-pdf-viewer/style.css file, then load it.
+	 *
+	 * @since  0.1.0
+	 *
+	 * @return void
+	 */
+	public function maybe_load_theme_stylesheet() {
+		$file = get_stylesheet_directory() . '/zao-pdf-viewer/style.css';
+		if ( file_exists( get_stylesheet_directory() . '/zao-pdf-viewer/style.css' ) ) {
+			echo '<link rel="stylesheet" href="'. get_stylesheet_directory_uri() . '/zao-pdf-viewer/style.css">';
+		}
+	}
+
+	/**
+	 * The URL to the viewer.
+	 *
+	 * @since  0.1.0
+	 *
+	 * @return string  The viewer URL.
+	 */
+	public static function zpdf_url() {
+		return ZPDFV_URL . 'pdfjs/web/view';
 	}
 
 	/**
