@@ -97,4 +97,29 @@ function zao_make_all_pdf_links_open_in_new_tab() {
 add_action( 'zaopdf_footer', 'zao_make_all_pdf_links_open_in_new_tab' );
 ```
 
+* Disable shortcode completely, and create a theme template tag instead (please replace `themeprefix_` with something unique to your project):
+
+```php
+add_action( 'zaopdf_init', function() {
+	remove_shortcode( ZPDFV_SHORTCODE_TAG, array( ZPDF_Viewer_Frontend::get_instance(), 'output' ) );
+	remove_action( 'register_shortcode_ui', array( ZPDF_Viewer_Admin::get_instance(), 'shortcode_ui' ) );
+} );
+
+/**
+ * Wrapper for ZPDF_Viewer_Frontend::output.
+ * Use like:
+ *
+ * themeprefix_zpdf( array(
+ *		'url'    => 'URL_TO_PDF.pdf',
+ *		// 'id'  => 1234, // OR a PDF attachment ID.
+ *		'height' => 129, // (8.5x11 paper)
+ *	) )
+ *
+ * @param  array  $args An 'id' or 'url' are the minimum requirements, (where 'id' is an pdf attachment ID).
+ * @return string       PDF Viewer output (if successful).
+ */
+function themeprefix_zpdf( $args ) {
+	return ZPDF_Viewer_Frontend::get_instance()->output( $args );
+}
+```
 
