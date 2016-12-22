@@ -17,3 +17,44 @@ Shortcode:
 
 Frontend output:
 ![Frontend output](https://raw.githubusercontent.com/zao-web/zao-pdf-viewer/master/screenshot-2.png)
+
+### Hooks
+
+#### Filters
+
+* `zaopdf_stylesheet` - Filters the main Zao PDF Viewer stylesheet. Replace with a URL to your own stylesheet to override.
+* `zaopdf_js` - Filters the main Zao PDF Viewer javascript. Replace with a URL to your own javascript file to override. This is the main functionality of the viewer, so proceed with caution.
+* The following filters can each be used to disable a button in the Zao PDF Viewer.
+	* `zaopdf_button_enable_viewThumbnail`
+	* `zaopdf_button_enable_viewOutline`
+	* `zaopdf_button_enable_viewAttachments`
+	* `zaopdf_button_enable_viewThumbnail`
+	* `zaopdf_button_enable_presentationMode`
+	* `zaopdf_button_enable_openFile`
+	* `zaopdf_button_enable_print`
+	* `zaopdf_button_enable_download`
+	* `zaopdf_button_enable_viewBookmark`
+	* `zaopdf_button_enable_firstPage`
+	* `zaopdf_button_enable_lastPage`
+	* `zaopdf_button_enable_pageRotateCw`
+	* `zaopdf_button_enable_pageRotateCcw`
+	* `zaopdf_button_enable_toggleHandTool`
+	* `zaopdf_button_enable_documentProperties`
+	* `zaopdf_button_enable_sidebarToggle`
+	* `zaopdf_button_enable_viewFind`
+	* `zaopdf_button_enable_pagination`
+	* `zaopdf_button_enable_paginationInput`
+	* `zaopdf_button_enable_paginationInput`
+	* `zaopdf_button_enable_presentationMode`
+	* `zaopdf_button_enable_openFile`
+	* `zaopdf_button_enable_print`
+	* `zaopdf_button_enable_download`
+	* `zaopdf_button_enable_viewBookmark`
+	* `zaopdf_button_enable_secondaryToolbarToggle`
+	* `zaopdf_button_enable_zoomToggles`
+	* `zaopdf_button_enable_scaleSelect`
+
+#### Actions
+
+* `zaopdf_head` - Hook in the head of the viewer html document, similar to `wp_head`.
+* `zaopdf_footer` - Hook just before the closing `</body>` tag in the viewer html document, similar to `wp_footer`.
