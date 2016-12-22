@@ -70,7 +70,7 @@ class ZPDF_Viewer_Frontend {
 		$atts = shortcode_atts( array(
 			'url'    => '',
 			'id'     => 0,
-			'height' => floatval( zpdfv_get_option( 'zpdfv_height', 56.25 ) ),
+			'height' => floatval( zpdfv_get_option( 'height', 56.25 ) ),
 		), $atts, $this->tag );
 
 		// No PDF URL or Attachment ID, then we will just bail.

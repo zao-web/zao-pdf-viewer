@@ -132,7 +132,7 @@ class ZPDF_Viewer_Admin {
 		$cmb->add_field( array(
 			'name'    => __( 'Default PDF viewer height ratio', 'pdfv' ),
 			'desc'    => '%',
-			'id'      => 'zpdfv_height',
+			'id'      => 'height',
 			'type'    => 'text_number',
 			'default' => '56.25',
 			'after'   => '<p class="cmb2-metabox-description">'. __( 'Enter the ratio percentage. Default (56.25%) is 16/9 ratio.', 'pdfv' ) .'</p>',
