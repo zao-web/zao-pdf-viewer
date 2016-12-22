@@ -42,7 +42,7 @@ class ZPDF_Viewer_Admin {
 	 */
 	protected function __construct() {
 		// Set our title
-		$this->title = __( 'Zao PDF Viewer', 'pdfv' );
+		$this->title = __( 'Zao PDF Viewer', 'zpdfv' );
 	}
 
 	/**
@@ -70,6 +70,8 @@ class ZPDF_Viewer_Admin {
 
 		add_action( 'cmb2_render_text_number', array( $this, 'render_text_number' ), 10, 5 );
 		add_filter( 'cmb2_sanitize_text_number', array( $this, 'sanitize_text_number' ), 10, 2 );
+
+		add_action( 'register_shortcode_ui', array( $this, 'shortcode_ui' ) );
 	}
 
 	public function is_admin() {
@@ -130,12 +132,12 @@ class ZPDF_Viewer_Admin {
 		) );
 
 		$cmb->add_field( array(
-			'name'    => __( 'Default PDF viewer height ratio', 'pdfv' ),
+			'name'    => __( 'Default PDF viewer height ratio', 'zpdfv' ),
 			'desc'    => '%',
 			'id'      => 'height',
 			'type'    => 'text_number',
 			'default' => '56.25',
-			'after'   => '<p class="cmb2-metabox-description">'. __( 'Enter the ratio percentage. Default (56.25%) is 16/9 ratio.', 'pdfv' ) .'</p>',
+			'after'   => '<p class="cmb2-metabox-description">'. __( 'Enter the ratio percentage. Default (56.25%) is 16/9 ratio.', 'zpdfv' ) .'</p>',
 		) );
 
 	}
@@ -153,6 +155,55 @@ class ZPDF_Viewer_Admin {
 		$new = preg_replace( "/[^0-9]/", "", $new );
 
 		return $new;
+	}
+
+
+	/**
+	 * Shortcode UI setup for the pdfviewer shortcode.
+	 *
+	 * It is called when the Shortcake action hook `register_shortcode_ui` is called.
+	 *
+	 * @since 0.1.0
+	 */
+	public function shortcode_ui() {
+		/*
+		 * Define the Shortcode UI arguments.
+		 */
+		$shortcode_ui_args = array(
+			'label' => esc_html__( 'Zao PDF Viewer', 'zpdfv' ),
+			'listItemImage' => 'dashicons-media-document',
+			'attrs' => array(
+				array(
+					'label'       => esc_html__( 'Select PDF', 'zpdfv' ),
+					'attr'        => 'id',
+					'type'        => 'attachment',
+					'libraryType' => array( 'application/pdf' ),
+					'addButton'   => esc_html__( 'Select PDF', 'zpdfv' ),
+					'frameTitle'  => esc_html__( 'Select PDF', 'zpdfv' ),
+				),
+				array(
+					'label'       => esc_html__( 'Optional PDF URL', 'zpdfv' ),
+					'description' => esc_html__( 'Add URL if PDF is on this server, but not in the media library.', 'zpdfv' ),
+					'attr'        => 'url',
+					'type'        => 'text',
+					'encode'      => true,
+					'meta'        => array(
+						'data-test'   => 1,
+					),
+				),
+				array(
+					'label'       => esc_html__( 'PDF viewer height ratio', 'zpdfv' ),
+					'description' => esc_html__( 'Enter the ratio percentage. Default (56.25%) is 16/9 ratio.', 'zpdfv' ),
+					'attr'        => 'height',
+					'type'        => 'number',
+					'meta'        => array(
+						'placeholder' => '56.25',
+					),
+				),
+			),
+		);
+
+		shortcode_ui_register_for_shortcode( ZPDFV_SHORTCODE_TAG, $shortcode_ui_args );
 	}
 
 	/**

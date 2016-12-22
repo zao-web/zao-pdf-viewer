@@ -36,6 +36,7 @@
 define( 'ZPDFV_VERSION', '0.1.0' );
 define( 'ZPDFV_OPT_KEY', 'zpdfv_options' );
 define( 'ZPDFV_URL', plugins_url( '/', __FILE__ ) );
+define( 'ZPDFV_SHORTCODE_TAG', 'pdfviewer' );
 define( 'ZPDFV_DIR', trailingslashit( dirname( __FILE__ ) ) );
 
 /**

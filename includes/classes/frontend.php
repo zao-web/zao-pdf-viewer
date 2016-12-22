@@ -17,7 +17,7 @@ class ZPDF_Viewer_Frontend {
 	 *
 	 * @var string
 	 */
-	protected $tag = 'pdfviewer';
+	protected $tag = ZPDFV_SHORTCODE_TAG;
 
 	/**
 	 * Returns the ZPDF_Viewer_Frontend object
