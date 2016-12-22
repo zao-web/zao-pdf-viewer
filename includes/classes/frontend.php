@@ -140,16 +140,22 @@ class ZPDF_Viewer_Frontend {
 	}
 
 	/**
-	 * If the theme has a /zao-pdf-viewer/style.css file, then load it.
+	 * If the theme has a style.css or viewer-custom.js file in its /zao-pdf-viewer/ directory, let's load them.
 	 *
 	 * @since  0.1.0
 	 *
 	 * @return void
 	 */
-	public function maybe_load_theme_stylesheet() {
-		$file = get_stylesheet_directory() . '/zao-pdf-viewer/style.css';
-		if ( file_exists( get_stylesheet_directory() . '/zao-pdf-viewer/style.css' ) ) {
-			echo '<link rel="stylesheet" href="'. get_stylesheet_directory_uri() . '/zao-pdf-viewer/style.css">';
+	public function maybe_load_theme_assets() {
+		$dir = get_stylesheet_directory() . '/zao-pdf-viewer/';
+		$uri = get_stylesheet_directory_uri() . '/zao-pdf-viewer/';
+
+		if ( file_exists( $dir . 'style.css' ) ) {
+			echo '<link rel="stylesheet" href="'. $uri . 'style.css">';
+		}
+
+		if ( file_exists( $dir . 'viewer-custom.js' ) ) {
+			echo '<script src="'. $uri . 'viewer-custom.js"></script>';
 		}
 	}
 
