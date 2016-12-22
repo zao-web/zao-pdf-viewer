@@ -58,3 +58,24 @@ Frontend output:
 
 * `zaopdf_head` - Hook in the head of the viewer html document, similar to `wp_head`.
 * `zaopdf_footer` - Hook just before the closing `</body>` tag in the viewer html document, similar to `wp_footer`.
+
+### Sample Snippets
+
+* Disable the download, print, and open-file buttons:
+
+```php
+add_filter( 'zaopdf_button_enable_download', '__return_false' );
+add_filter( 'zaopdf_button_enable_print', '__return_false' );
+add_filter( 'zaopdf_button_enable_openFile', '__return_false' );
+```
+
+* Make all links in the PDF open a new tab:
+
+```php
+function zao_make_all_pdf_links_open_in_new_tab() {
+	echo '<base target="_blank">';
+}
+add_action( 'zaopdf_footer', 'zao_make_all_pdf_links_open_in_new_tab' );
+```
+
+
