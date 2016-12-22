@@ -130,13 +130,37 @@ class ZPDF_Viewer_Frontend {
 	public function maybe_load_viewer() {
 		$parts = explode( '?', network_site_url( $_SERVER['REQUEST_URI'] ) );
 
-		if ( 0 === strpos( $parts[0], self::zpdf_url() ) && ! empty( $_REQUEST['file'] ) ) {
-
-			add_action( 'zaopdf_head', array( $this, 'maybe_load_theme_stylesheet' ) );
-
-			include_once ZPDFV_DIR . 'templates/viewer.php';
-			exit;
+		// If we have a file & the request uri matches our pdf url...
+		if ( ! empty( $_REQUEST['file'] ) && 0 === strpos( $parts[0], self::zpdf_url() ) ) {
+			// Then load our viewer.
+			$this->load_viewer();
 		}
+	}
+
+	/**
+	 * Load the PDF viewer and ensure it is not sent as a 404 request.
+	 *
+	 * @since  0.1.0
+	 *
+	 * @return void
+	 */
+	public function load_viewer() {
+		global $wp_query;
+
+		if ( $wp_query->is_404 ) {
+			// set status of 404 to false
+			$wp_query->is_404 = false;
+			$wp_query->is_single = true;
+		}
+
+ 		// change the header to 200 OK
+		status_header( '200', 'OK' );
+
+		// Check if the theme wants load custom stylesheet or JS.
+		add_action( 'zaopdf_head', array( $this, 'maybe_load_theme_assets' ) );
+
+		include_once ZPDFV_DIR . 'templates/viewer.php';
+		exit;
 	}
 
 	/**
