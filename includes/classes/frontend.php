@@ -154,7 +154,7 @@ class ZPDF_Viewer_Frontend {
 		}
 
  		// change the header to 200 OK
-		status_header( '200', 'OK' );
+		status_header( '200' );
 
 		// Check if the theme wants load custom stylesheet or JS.
 		add_action( 'zaopdf_head', array( $this, 'maybe_load_theme_assets' ) );
