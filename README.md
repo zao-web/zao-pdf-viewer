@@ -1,4 +1,4 @@
-# Zao PDF Viewer
+# Zao PDF Viewer (v0.1.1)
 
 PDF Viewer shortcode plugin. Uses [Mozilla's pdf.js](https://github.com/mozilla/pdf.js) for displaying a beautiful native-feeling PDF viewer. Props to [wpsmith](https://github.com/wpsmith) for the initial implementation.
 
@@ -42,6 +42,7 @@ To override the viewer's stylesheet completely, you would use the `zaopdf_styles
 * `zaopdf_stylesheet` - Filters the main Zao PDF Viewer stylesheet. Replace with a URL to your own stylesheet to override.
 * `zaopdf_js` - Filters the main Zao PDF Viewer javascript URL. Replace with a URL to your own javascript file to override. This is the main functionality of the viewer, so proceed with caution.
 * `zaopdf_worker_js` - Filters the Zao PDF Viewer worker javascript URL. Replace with a URL to your own javascript file to override. This is primary functionality of the viewer, so proceed with caution.
+* `zaopdf_allowed_origins` - Filters the allowed domain origins for PDF hosts. Default is `array( 'null', 'http://mozilla.github.io', 'https://mozilla.github.io', )`, but can be filtered to include additional domains which have the proper CORS settings on the server. See the [CORS/XHR FAQ entry on the PDF.js wiki](https://github.com/mozilla/pdf.js/wiki/Frequently-Asked-Questions#faq-xhr) for more info.
 * The following filters can each be used to [disable a button in the Zao PDF Viewer](https://github.com/zao-web/zao-pdf-viewer/blob/master/README.md#sample-snippets).
 	* `zaopdf_button_enable_viewThumbnail`
 	* `zaopdf_button_enable_viewOutline`
@@ -121,5 +122,20 @@ add_action( 'zaopdf_init', function() {
 function themeprefix_zpdf( $args ) {
 	return ZPDF_Viewer_Frontend::get_instance()->output( $args );
 }
+```
+
+* Enable hosting PDFs from your site as well as your CDN. By default, the viewer will allow same-origin PDFs, but adding your site url to the list may help in some cases.
+
+```php
+function themeprefix_zaopdf_allowed_origins( $origins ) {
+	// Allow your CDN. CDN must have proper CORS settings.
+	$origins[] = 'https://cdn.yourdomain.com';
+
+	// Allow your site url.
+	$origins[] = site_url();
+
+	return $origins;
+}
+add_filter( 'zaopdf_allowed_origins', 'themeprefix_zaopdf_allowed_origins' );
 ```
 

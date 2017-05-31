@@ -37,6 +37,11 @@ See https://github.com/adobe-type-tools/cmap-resources
 	<script type="text/javascript">
 		window.PDFJS = window.PDFJS || {};
 		window.PDFJS.workerSrc = '<?php echo apply_filters( 'zaopdf_worker_js', ZPDFV_URL . 'pdfjs/build/pdf.worker.js?v='. ZPDFV_VERSION ); ?>';
+		window.PDFJS.allowedOrigins = <?php echo wp_json_encode( apply_filters( 'zaopdf_allowed_origins' /* since 0.1.0 */, array(
+			'null',
+			'http://mozilla.github.io',
+			'https://mozilla.github.io',
+		) ) ); ?>;
 	</script>
 	<script src="<?php echo apply_filters( 'zaopdf_js', ZPDFV_URL . 'pdfjs/web/pdf.viewer.js?v='. ZPDFV_VERSION ); ?>"></script>
 
