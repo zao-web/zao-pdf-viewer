@@ -81,7 +81,7 @@ class ZPDF_Viewer_Frontend {
 		$atts['index'] = $index;
 
 		if ( $atts['id'] ) {
-			$atts['url'] = wp_get_attachment_url( absint( $atts['id'] ), 'full' );
+			$atts['url'] = set_url_scheme( wp_get_attachment_url( absint( $atts['id'] ), 'full' ) );
 		}
 
 		// If we couldn't find a PDF URL, then we bail.
@@ -114,8 +114,8 @@ class ZPDF_Viewer_Frontend {
 			$atts['url'] = urldecode( $atts['url'] );
 		}
 
-
-		$src = add_query_arg( 'file', urlencode( esc_url_raw( $atts['url'] ) ), self::zpdf_url() );
+		$url = apply_filters( 'zaopdf_file_url', esc_url_raw( $atts['url'] ), $atts );
+		$src = add_query_arg( 'file', urlencode( $url ), self::zpdf_url() );
 
 		$iframe = '<div id="zpdf-'. $index .'"><iframe class="noscrolling zpdf-iframe" width="100%" height="100%" scrolling="no" frameborder="0" name="pdfv" src="'. esc_url( $src ) . '"></iframe></div>';
 
