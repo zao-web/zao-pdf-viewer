@@ -109,6 +109,12 @@ class ZPDF_Viewer_Frontend {
 
 		$output .= '<style type="text/css">'. $css .'</style>';
 
+		// Shortcake encodes the URL, so we need to account for that.
+		if ( false !== strpos( $atts['url'], '%2F' ) ) {
+			$atts['url'] = urldecode( $atts['url'] );
+		}
+
+
 		$src = add_query_arg( 'file', urlencode( esc_url_raw( $atts['url'] ) ), self::zpdf_url() );
 
 		$iframe = '<div id="zpdf-'. $index .'"><iframe class="noscrolling zpdf-iframe" width="100%" height="100%" scrolling="no" frameborder="0" name="pdfv" src="'. esc_url( $src ) . '"></iframe></div>';
