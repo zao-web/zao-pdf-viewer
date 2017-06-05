@@ -109,7 +109,7 @@ class ZPDF_Viewer_Frontend {
 
 		$output .= '<style type="text/css">'. $css .'</style>';
 
-		// Shortcake encodes the URL, so we need to account for that.
+		// In case shortcake encodes the URL, we need to account for that.
 		if ( false !== strpos( $atts['url'], '%2F' ) ) {
 			$atts['url'] = urldecode( $atts['url'] );
 		}

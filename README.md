@@ -1,4 +1,4 @@
-# Zao PDF Viewer (v0.1.1)
+# Zao PDF Viewer (v0.1.2)
 
 PDF Viewer shortcode plugin. Uses [Mozilla's pdf.js](https://github.com/mozilla/pdf.js) for displaying a beautiful native-feeling PDF viewer. Props to [wpsmith](https://github.com/wpsmith) for the initial implementation.
 

@@ -186,7 +186,7 @@ class ZPDF_Viewer_Admin {
 					'description' => esc_html__( 'Add URL if PDF is on this server, but not in the media library.', 'zpdfv' ),
 					'attr'        => 'url',
 					'type'        => 'text',
-					'encode'      => true,
+					'encode'      => false,
 					'meta'        => array(
 						'data-test'   => 1,
 					),
