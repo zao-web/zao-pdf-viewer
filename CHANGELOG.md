@@ -1,5 +1,10 @@
 # Zao PDF Viewer Changelog
 
+## 0.1.3 - 2017-06-17
+
+* Added `zaopdf_should_load_viewer` filter to allow overriding if/when the viewer loads.
+* Added `zaopdf_viewer_url` filter to allow overriding the default viewer URL.
+
 ## 0.1.2 - 2017-06-05
 
 * Added `zaopdf_file_url` filter to allow modifying the PDF file url for the iframe.

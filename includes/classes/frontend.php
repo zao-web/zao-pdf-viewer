@@ -137,8 +137,10 @@ class ZPDF_Viewer_Frontend {
 		$parts = explode( '?', network_site_url( $_SERVER['REQUEST_URI'] ) );
 
 		// If we have a file & the request uri matches our pdf url...
-		if ( ! empty( $_REQUEST['file'] ) && 0 === strpos( $parts[0], self::zpdf_url() ) ) {
-			// Then load our viewer.
+		$should_load_viewer = ! empty( $_REQUEST['file'] ) && 0 === strpos( $parts[0], self::zpdf_url() );
+
+		// Allow plugins to override if/when the viewer loads.
+		if ( apply_filters( 'zaopdf_should_load_viewer', $should_load_viewer ) ) {
 			$this->load_viewer();
 		}
 	}
@@ -197,7 +199,8 @@ class ZPDF_Viewer_Frontend {
 	 * @return string  The viewer URL.
 	 */
 	public static function zpdf_url() {
-		return site_url( 'pdfjs-view' );
+		// Allow plugins to override the viewer url.
+		return apply_filters( 'zaopdf_viewer_url', site_url( 'pdfjs-view' ) );
 	}
 
 	/**

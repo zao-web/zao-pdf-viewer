@@ -1,4 +1,4 @@
-# Zao PDF Viewer (v0.1.2)
+# Zao PDF Viewer (v0.1.3)
 
 PDF Viewer shortcode plugin. Uses [Mozilla's pdf.js](https://github.com/mozilla/pdf.js) for displaying a beautiful native-feeling PDF viewer. Props to [wpsmith](https://github.com/wpsmith) for the initial implementation.
 
@@ -43,6 +43,8 @@ To override the viewer's stylesheet completely, you would use the `zaopdf_styles
 * `zaopdf_js` - Filters the main Zao PDF Viewer javascript URL. Replace with a URL to your own javascript file to override. This is the main functionality of the viewer, so proceed with caution.
 * `zaopdf_worker_js` - Filters the Zao PDF Viewer worker javascript URL. Replace with a URL to your own javascript file to override. This is primary functionality of the viewer, so proceed with caution.
 * `zaopdf_allowed_origins` - Filters the allowed domain origins for PDF hosts. Default is `array( 'null', 'http://mozilla.github.io', 'https://mozilla.github.io', )`, but can be filtered to include additional domains which have the proper CORS settings on the server. See the [CORS/XHR FAQ entry on the PDF.js wiki](https://github.com/mozilla/pdf.js/wiki/Frequently-Asked-Questions#faq-xhr) for more info.
+* `zaopdf_should_load_viewer` - Allows overriding if/when the viewer loads.
+* `zaopdf_viewer_url` - Allows overriding the default viewer URL.
 * The following filters can each be used to [disable a button in the Zao PDF Viewer](https://github.com/zao-web/zao-pdf-viewer/blob/master/README.md#sample-snippets).
 	* `zaopdf_button_enable_viewThumbnail`
 	* `zaopdf_button_enable_viewOutline`
@@ -137,5 +139,19 @@ function themeprefix_zaopdf_allowed_origins( $origins ) {
 	return $origins;
 }
 add_filter( 'zaopdf_allowed_origins', 'themeprefix_zaopdf_allowed_origins' );
+```
+
+* Only allow viewing the PDF if the viewer is logged in.
+
+```php
+function themeprefix_zaopdf_load_viewer_for_logged_in_only( $should_load_viewer ) {
+	if ( ! is_user_logged_in() ) {
+		// This will cause a the site to load a 404.
+		$should_load_viewer = false;
+	}
+
+	return $should_load_viewer;
+}
+add_filter( 'zaopdf_should_load_viewer', 'themeprefix_zaopdf_load_viewer_for_logged_in_only' );
 ```
 
