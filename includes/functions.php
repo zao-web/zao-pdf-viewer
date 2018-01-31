@@ -20,7 +20,7 @@ function zpdfv_get_option( $key = '', $default = null ) {
 
 	if ( 'all' == $key ) {
 		$val = $opts;
-	} elseif ( array_key_exists( $key, $opts ) && false !== $opts[ $key ] ) {
+	} elseif ( array_key_exists( $key, (array) $opts ) && false !== $opts[ $key ] ) {
 		$val = $opts[ $key ];
 	}
 
