@@ -14,13 +14,12 @@ function zpdfv_get_option( $key = '', $default = null ) {
 	}
 
 	// Fallback to get_option if CMB2 is not loaded yet.
-	$opts = get_option( ZPDFV_OPT_KEY, $key, $default );
+	$opts = get_option( ZPDFV_OPT_KEY, $default );
 
 	$val = $default;
-
 	if ( 'all' == $key ) {
 		$val = $opts;
-	} elseif ( array_key_exists( $key, $opts ) && false !== $opts[ $key ] ) {
+	} elseif ( is_array($opts ) && array_key_exists( $key, $opts ) && false !== $opts[ $key ] ) {
 		$val = $opts[ $key ];
 	}
 
