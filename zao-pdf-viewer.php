@@ -3,7 +3,7 @@
  * Plugin Name: Zao PDF Viewer
  * Plugin URI: http://zao.is
  * Description: PDF Viewer shortcode plugin. Uses Mozilla's pdf.js.
- * Version: 0.1.0
+ * Version: 0.1.3
  * Author: Justin Sternberg
  * Author URI: http://zao.is
  *
@@ -33,7 +33,7 @@
  * @since   0.1.0
  */
 
-define( 'ZPDFV_VERSION', '0.1.0' );
+define( 'ZPDFV_VERSION', '0.1.3' );
 define( 'ZPDFV_OPT_KEY', 'zpdfv_options' );
 define( 'ZPDFV_URL', plugins_url( '/', __FILE__ ) );
 define( 'ZPDFV_SHORTCODE_TAG', 'pdfviewer' );

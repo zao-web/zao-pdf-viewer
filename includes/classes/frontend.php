@@ -83,7 +83,7 @@ class ZPDF_Viewer_Frontend {
 		$atts['index'] = $index;
 
 		if ( $atts['id'] ) {
-			$atts['url'] = wp_get_attachment_url( absint( $atts['id'] ), 'full' );
+			$atts['url'] = set_url_scheme( wp_get_attachment_url( absint( $atts['id'] ) ) );
 		} elseif ( '' !== $atts['pdf'] && false === strpos( $atts['pdf'], 'data:application/pdf;base64,' ) ) {
 			$atts['pdf'] = 'data:application/pdf;base64,' . $atts['pdf'];
 		}
@@ -113,10 +113,16 @@ class ZPDF_Viewer_Frontend {
 
 		$output .= '<style type="text/css">'. $css .'</style>';
 
-		if ( '' !== $atts['url'] ) {
-			$src = esc_url( add_query_arg( 'file', urlencode( esc_url_raw( $atts['url'] ) ), self::zpdf_url() ) );
-		} elseif ( '' !== $atts['pdf'] ) {
+		// In case shortcake encodes the URL, we need to account for that.
+		if ( false !== strpos( $atts['url'], '%2F' ) ) {
+			$atts['url'] = urldecode( $atts['url'] );
+		}
+
+		if ( '' !== $atts['pdf'] ) {
 			$src = $atts['pdf'];
+		} else {
+			$url = apply_filters( 'zaopdf_file_url', esc_url_raw( $atts['url'] ), $atts );
+			$src = add_query_arg( 'file', urlencode( $url ), self::zpdf_url() );
 		}
 		$src = apply_filters( 'zaopdf_iframe_src', $src, $atts );
 
@@ -140,8 +146,10 @@ class ZPDF_Viewer_Frontend {
 		$parts = explode( '?', network_site_url( $_SERVER['REQUEST_URI'] ) );
 
 		// If we have a file & the request uri matches our pdf url...
-		if ( ! empty( $_REQUEST['file'] ) && 0 === strpos( $parts[0], self::zpdf_url() ) ) {
-			// Then load our viewer.
+		$should_load_viewer = ! empty( $_REQUEST['file'] ) && 0 === strpos( $parts[0], self::zpdf_url() );
+
+		// Allow plugins to override if/when the viewer loads.
+		if ( apply_filters( 'zaopdf_should_load_viewer', $should_load_viewer ) ) {
 			$this->load_viewer();
 		}
 	}
@@ -163,7 +171,7 @@ class ZPDF_Viewer_Frontend {
 		}
 
  		// change the header to 200 OK
-		status_header( '200', 'OK' );
+		status_header( '200' );
 
 		// Check if the theme wants load custom stylesheet or JS.
 		add_action( 'zaopdf_head', array( $this, 'maybe_load_theme_assets' ) );
@@ -200,7 +208,8 @@ class ZPDF_Viewer_Frontend {
 	 * @return string  The viewer URL.
 	 */
 	public static function zpdf_url() {
-		return site_url( 'pdfjs-view' );
+		// Allow plugins to override the viewer url.
+		return apply_filters( 'zaopdf_viewer_url', site_url( 'pdfjs-view' ) );
 	}
 
 	/**
