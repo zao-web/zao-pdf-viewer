@@ -26,7 +26,7 @@ See https://github.com/adobe-type-tools/cmap-resources
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="google" content="notranslate">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Zao PDF Viewer</title>
+	<title><?php _e( 'Zao PDF Viewer', 'zpdfv' ); ?></title>
 
 	<?php if ( $css = apply_filters( 'zaopdf_stylesheet', ZPDFV_URL . 'pdfjs/web/viewer.css' ) ) : ?>
 		<link rel="stylesheet" href="<?php echo $css; ?>">
@@ -48,14 +48,14 @@ See https://github.com/adobe-type-tools/cmap-resources
 		<div id="sidebarContainer">
 			<div id="toolbarSidebar">
 				<div class="splitToolbarButton toggled">
-					<button id="viewThumbnail" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_viewThumbnail', true ) ) :?>hidden<?php endif; ?> toolbarButton group toggled" title="Show Thumbnails" tabindex="2" data-l10n-id="thumbs">
-						<span data-l10n-id="thumbs_label">Thumbnails</span>
+					<button id="viewThumbnail" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_viewThumbnail', true ) ) :?>hidden<?php endif; ?> toolbarButton group toggled" title="<?php esc_attr_e( 'Show Thumbnails', 'zpdfv' ); ?>" tabindex="2" data-l10n-id="thumbs">
+						<span data-l10n-id="thumbs_label"><?php _e( 'Thumbnails', 'zpdfv' ); ?></span>
 					</button>
-					<button id="viewOutline" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_viewOutline', true ) ) :?>hidden<?php endif; ?> toolbarButton group" title="Show Document Outline (double-click to expand/collapse all items)" tabindex="3" data-l10n-id="document_outline">
-						<span data-l10n-id="document_outline_label">Document Outline</span>
+					<button id="viewOutline" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_viewOutline', true ) ) :?>hidden<?php endif; ?> toolbarButton group" title="<?php esc_attr_e( 'Show Document Outline (double-click to expand/collapse all items)', 'zpdfv' ); ?>" tabindex="3" data-l10n-id="document_outline">
+						<span data-l10n-id="document_outline_label"><?php _e( 'Document Outline', 'zpdfv' ); ?></span>
 					</button>
-					<button id="viewAttachments" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_viewAttachments', true ) ) :?>hidden<?php endif; ?> toolbarButton group" title="Show Attachments" tabindex="4" data-l10n-id="attachments">
-						<span data-l10n-id="attachments_label">Attachments</span>
+					<button id="viewAttachments" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_viewAttachments', true ) ) :?>hidden<?php endif; ?> toolbarButton group" title="<?php esc_attr_e( 'Show Attachments', 'zpdfv' ); ?>" tabindex="4" data-l10n-id="attachments">
+						<span data-l10n-id="attachments_label"><?php _e( 'Attachments', 'zpdfv' ); ?></span>
 					</button>
 				</div>
 			</div>
@@ -68,75 +68,75 @@ See https://github.com/adobe-type-tools/cmap-resources
 
 		<div id="mainContainer">
 			<div class="findbar hidden doorHanger hiddenSmallView" id="findbar">
-				<label for="findInput" class="toolbarLabel" data-l10n-id="find_label">Find:</label>
+				<label for="findInput" class="toolbarLabel" data-l10n-id="find_label"><?php _e( 'Find:', 'zpdfv' ); ?></label>
 				<input id="findInput" class="toolbarField" tabindex="91">
 				<div class="splitToolbarButton">
 					<button class="toolbarButton findPrevious" title="" id="findPrevious" tabindex="92" data-l10n-id="find_previous">
-						<span data-l10n-id="find_previous_label">Previous</span>
+						<span data-l10n-id="find_previous_label"><?php _e( 'Previous', 'zpdfv' ); ?></span>
 					</button>
 					<div class="splitToolbarButtonSeparator"></div>
 					<button class="toolbarButton findNext" title="" id="findNext" tabindex="93" data-l10n-id="find_next">
-						<span data-l10n-id="find_next_label">Next</span>
+						<span data-l10n-id="find_next_label"><?php _e( 'Next', 'zpdfv' ); ?></span>
 					</button>
 				</div>
 				<input type="checkbox" id="findHighlightAll" class="toolbarField" tabindex="94">
-				<label for="findHighlightAll" class="toolbarLabel" data-l10n-id="find_highlight">Highlight all</label>
+				<label for="findHighlightAll" class="toolbarLabel" data-l10n-id="find_highlight"><?php _e( 'Highlight all', 'zpdfv' ); ?></label>
 				<input type="checkbox" id="findMatchCase" class="toolbarField" tabindex="95">
-				<label for="findMatchCase" class="toolbarLabel" data-l10n-id="find_match_case_label">Match case</label>
+				<label for="findMatchCase" class="toolbarLabel" data-l10n-id="find_match_case_label"><?php _e( 'Match case', 'zpdfv' ); ?></label>
 				<span id="findResultsCount" class="toolbarLabel hidden"></span>
 				<span id="findMsg" class="toolbarLabel"></span>
 			</div>  <!-- findbar -->
 
 			<div id="secondaryToolbar" class="secondaryToolbar hidden doorHangerRight">
 				<div id="secondaryToolbarButtonContainer">
-					<button id="secondaryPresentationMode" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_presentationMode', true ) ) :?>hidden<?php endif; ?> secondaryToolbarButton presentationMode visibleLargeView" title="Switch to Presentation Mode" tabindex="51" data-l10n-id="presentation_mode">
-						<span data-l10n-id="presentation_mode_label">Presentation Mode</span>
+					<button id="secondaryPresentationMode" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_presentationMode', true ) ) :?>hidden<?php endif; ?> secondaryToolbarButton presentationMode visibleLargeView" title="<?php esc_attr_e( 'Switch to Presentation Mode', 'zpdfv' ); ?>" tabindex="51" data-l10n-id="presentation_mode">
+						<span data-l10n-id="presentation_mode_label"><?php _e( 'Presentation Mode', 'zpdfv' ); ?></span>
 					</button>
 
-					<button id="secondaryOpenFile" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_openFile', true ) ) :?>hidden<?php endif; ?> secondaryToolbarButton openFile visibleLargeView" title="Open File" tabindex="52" data-l10n-id="open_file">
-						<span data-l10n-id="open_file_label">Open</span>
+					<button id="secondaryOpenFile" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_openFile', true ) ) :?>hidden<?php endif; ?> secondaryToolbarButton openFile visibleLargeView" title="<?php esc_attr_e( 'Open File', 'zpdfv' ); ?>" tabindex="52" data-l10n-id="open_file">
+						<span data-l10n-id="open_file_label"><?php _e( 'Open', 'zpdfv' ); ?></span>
 					</button>
 
-					<button id="secondaryPrint" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_print', true ) ) :?>hidden<?php endif; ?> secondaryToolbarButton print visibleMediumView" title="Print" tabindex="53" data-l10n-id="print">
-						<span data-l10n-id="print_label">Print</span>
+					<button id="secondaryPrint" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_print', true ) ) :?>hidden<?php endif; ?> secondaryToolbarButton print visibleMediumView" title="<?php esc_attr_e( 'Print', 'zpdfv' ); ?>" tabindex="53" data-l10n-id="print">
+						<span data-l10n-id="print_label"><?php _e( 'Print', 'zpdfv' ); ?></span>
 					</button>
 
-					<button id="secondaryDownload" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_download', true ) ) :?>hidden<?php endif; ?> secondaryToolbarButton download visibleMediumView" title="Download" tabindex="54" data-l10n-id="download">
-						<span data-l10n-id="download_label">Download</span>
+					<button id="secondaryDownload" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_download', true ) ) :?>hidden<?php endif; ?> secondaryToolbarButton download visibleMediumView" title="<?php esc_attr_e( 'Download', 'zpdfv' ); ?>" tabindex="54" data-l10n-id="download">
+						<span data-l10n-id="download_label"><?php _e( 'Download', 'zpdfv' ); ?></span>
 					</button>
 
-					<a href="#" id="secondaryViewBookmark" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_viewBookmark', true ) ) :?>hidden<?php endif; ?> secondaryToolbarButton bookmark visibleSmallView" title="Current view (copy or open in new window)" tabindex="55" data-l10n-id="bookmark">
-						<span data-l10n-id="bookmark_label">Current View</span>
+					<a href="#" id="secondaryViewBookmark" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_viewBookmark', true ) ) :?>hidden<?php endif; ?> secondaryToolbarButton bookmark visibleSmallView" title="<?php esc_attr_e( 'Current view (copy or open in new window)', 'zpdfv' ); ?>" tabindex="55" data-l10n-id="bookmark">
+						<span data-l10n-id="bookmark_label"><?php _e( 'Current View', 'zpdfv' ); ?></span>
 					</a>
 
 					<div class="horizontalToolbarSeparator visibleLargeView"></div>
 
-					<button id="firstPage" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_firstPage', true ) ) :?>hidden<?php endif; ?> secondaryToolbarButton firstPage" title="Go to First Page" tabindex="56" data-l10n-id="first_page">
-						<span data-l10n-id="first_page_label">Go to First Page</span>
+					<button id="firstPage" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_firstPage', true ) ) :?>hidden<?php endif; ?> secondaryToolbarButton firstPage" title="<?php _e( 'Go to First Page', 'zpdfv' ); ?>" tabindex="56" data-l10n-id="first_page">
+						<span data-l10n-id="first_page_label"><?php _e( 'Go to First Page', 'zpdfv' ); ?></span>
 					</button>
-					<button id="lastPage" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_lastPage', true ) ) :?>hidden<?php endif; ?> secondaryToolbarButton lastPage" title="Go to Last Page" tabindex="57" data-l10n-id="last_page">
-						<span data-l10n-id="last_page_label">Go to Last Page</span>
-					</button>
-
-					<div class="horizontalToolbarSeparator"></div>
-
-					<button id="pageRotateCw" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_pageRotateCw', true ) ) :?>hidden<?php endif; ?> secondaryToolbarButton rotateCw" title="Rotate Clockwise" tabindex="58" data-l10n-id="page_rotate_cw">
-						<span data-l10n-id="page_rotate_cw_label">Rotate Clockwise</span>
-					</button>
-					<button id="pageRotateCcw" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_pageRotateCcw', true ) ) :?>hidden<?php endif; ?> secondaryToolbarButton rotateCcw" title="Rotate Counterclockwise" tabindex="59" data-l10n-id="page_rotate_ccw">
-						<span data-l10n-id="page_rotate_ccw_label">Rotate Counterclockwise</span>
+					<button id="lastPage" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_lastPage', true ) ) :?>hidden<?php endif; ?> secondaryToolbarButton lastPage" title="<?php esc_attr_e( 'Go to Last Page', 'zpdfv' ); ?>" tabindex="57" data-l10n-id="last_page">
+						<span data-l10n-id="last_page_label"><?php _e( 'Go to Last Page', 'zpdfv' ); ?></span>
 					</button>
 
 					<div class="horizontalToolbarSeparator"></div>
 
-					<button id="toggleHandTool" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_toggleHandTool', true ) ) :?>hidden<?php endif; ?> secondaryToolbarButton handTool" title="Enable hand tool" tabindex="60" data-l10n-id="hand_tool_enable">
-						<span data-l10n-id="hand_tool_enable_label">Enable hand tool</span>
+					<button id="pageRotateCw" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_pageRotateCw', true ) ) :?>hidden<?php endif; ?> secondaryToolbarButton rotateCw" title="<?php esc_attr_e( 'Rotate Clockwise', 'zpdfv' ); ?>" tabindex="58" data-l10n-id="page_rotate_cw">
+						<span data-l10n-id="page_rotate_cw_label"><?php _e( 'Rotate Clockwise', 'zpdfv' ); ?></span>
+					</button>
+					<button id="pageRotateCcw" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_pageRotateCcw', true ) ) :?>hidden<?php endif; ?> secondaryToolbarButton rotateCcw" title="<?php esc_attr_e( 'Rotate Counterclockwise', 'zpdfv' ); ?>" tabindex="59" data-l10n-id="page_rotate_ccw">
+						<span data-l10n-id="page_rotate_ccw_label"><?php _e( 'Rotate Counterclockwise', 'zpdfv' ); ?></span>
 					</button>
 
 					<div class="horizontalToolbarSeparator"></div>
 
-					<button id="documentProperties" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_documentProperties', true ) ) :?>hidden<?php endif; ?> secondaryToolbarButton documentProperties" title="Document Properties…" tabindex="61" data-l10n-id="document_properties">
-						<span data-l10n-id="document_properties_label">Document Properties…</span>
+					<button id="toggleHandTool" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_toggleHandTool', true ) ) :?>hidden<?php endif; ?> secondaryToolbarButton handTool" title="<?php esc_attr_e( 'Enable hand tool', 'zpdfv' ); ?>" tabindex="60" data-l10n-id="hand_tool_enable">
+						<span data-l10n-id="hand_tool_enable_label"><?php _e( 'Enable hand tool', 'zpdfv' ); ?></span>
+					</button>
+
+					<div class="horizontalToolbarSeparator"></div>
+
+					<button id="documentProperties" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_documentProperties', true ) ) :?>hidden<?php endif; ?> secondaryToolbarButton documentProperties" title="<?php esc_attr_e( 'Document Properties…', 'zpdfv' ); ?>" tabindex="61" data-l10n-id="document_properties">
+						<span data-l10n-id="document_properties_label"><?php _e( 'Document Properties…', 'zpdfv' ); ?></span>
 					</button>
 				</div>
 			</div>  <!-- secondaryToolbar -->
@@ -145,71 +145,71 @@ See https://github.com/adobe-type-tools/cmap-resources
 				<div id="toolbarContainer">
 					<div id="toolbarViewer">
 						<div id="toolbarViewerLeft">
-							<button id="sidebarToggle" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_sidebarToggle', true ) ) :?>hidden<?php endif; ?> toolbarButton" title="Toggle Sidebar" tabindex="11" data-l10n-id="toggle_sidebar">
-								<span data-l10n-id="toggle_sidebar_label">Toggle Sidebar</span>
+							<button id="sidebarToggle" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_sidebarToggle', true ) ) :?>hidden<?php endif; ?> toolbarButton" title="<?php esc_attr_e( 'Toggle Sidebar', 'zpdfv' ); ?>" tabindex="11" data-l10n-id="toggle_sidebar">
+								<span data-l10n-id="toggle_sidebar_label"><?php _e( 'Toggle Sidebar', 'zpdfv' ); ?></span>
 							</button>
 
 							<div class="toolbarButtonSpacer"></div>
 
-							<button id="viewFind" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_viewFind', true ) ) :?>hidden<?php endif; ?> toolbarButton group hiddenSmallView" title="Find in Document" tabindex="12" data-l10n-id="findbar">
-								<span data-l10n-id="findbar_label">Find</span>
+							<button id="viewFind" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_viewFind', true ) ) :?>hidden<?php endif; ?> toolbarButton group hiddenSmallView" title="<?php esc_attr_e( 'Find in Document', 'zpdfv' ); ?>" tabindex="12" data-l10n-id="findbar">
+								<span data-l10n-id="findbar_label"><?php _e( 'Find', 'zpdfv' ); ?></span>
 							</button>
 
 							<div class="<?php if ( ! apply_filters( 'zaopdf_button_enable_pagination', true ) ) :?>hidden<?php endif; ?> splitToolbarButton">
-								<button class="toolbarButton pageUp" title="Previous Page" id="previous" tabindex="13" data-l10n-id="previous">
-									<span data-l10n-id="previous_label">Previous</span>
+								<button class="toolbarButton pageUp" title="<?php esc_attr_e( 'Previous Page', 'zpdfv' ); ?>" id="previous" tabindex="13" data-l10n-id="previous">
+									<span data-l10n-id="previous_label"><?php _e( 'Previous', 'zpdfv' ); ?></span>
 								</button>
 								<div class="splitToolbarButtonSeparator"></div>
-								<button class="toolbarButton pageDown" title="Next Page" id="next" tabindex="14" data-l10n-id="next">
-									<span data-l10n-id="next_label">Next</span>
+								<button class="toolbarButton pageDown" title="<?php esc_attr_e( 'Next Page', 'zpdfv' ); ?>" id="next" tabindex="14" data-l10n-id="next">
+									<span data-l10n-id="next_label"><?php _e( 'Next', 'zpdfv' ); ?></span>
 								</button>
 							</div>
 
-							<input type="number" id="pageNumber" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_paginationInput', true ) ) :?>hidden<?php endif; ?> toolbarField pageNumber" title="Page" value="1" size="4" min="1" tabindex="15" data-l10n-id="page">
+							<input type="number" id="pageNumber" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_paginationInput', true ) ) :?>hidden<?php endif; ?> toolbarField pageNumber" title="<?php esc_attr_e( 'Page', 'zpdfv' ); ?>" value="1" size="4" min="1" tabindex="15" data-l10n-id="page">
 							<span id="numPages" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_paginationInput', true ) ) :?>hidden<?php endif; ?> toolbarLabel"></span>
 						</div>
 						<div id="toolbarViewerRight">
-							<button id="presentationMode" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_presentationMode', true ) ) :?>hidden<?php endif; ?> toolbarButton presentationMode hiddenLargeView" title="Switch to Presentation Mode" tabindex="31" data-l10n-id="presentation_mode">
-								<span data-l10n-id="presentation_mode_label">Presentation Mode</span>
+							<button id="presentationMode" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_presentationMode', true ) ) :?>hidden<?php endif; ?> toolbarButton presentationMode hiddenLargeView" title="<?php esc_attr_e( 'Switch to Presentation Mode', 'zpdfv' ); ?>" tabindex="31" data-l10n-id="presentation_mode">
+								<span data-l10n-id="presentation_mode_label"><?php _e( 'Presentation Mode', 'zpdfv' ); ?></span>
 							</button>
 
-							<button id="openFile" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_openFile', true ) ) :?>hidden<?php endif; ?> toolbarButton openFile hiddenLargeView" title="Open File" tabindex="32" data-l10n-id="open_file">
-								<span data-l10n-id="open_file_label">Open</span>
+							<button id="openFile" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_openFile', true ) ) :?>hidden<?php endif; ?> toolbarButton openFile hiddenLargeView" title="<?php esc_attr_e( 'Open File', 'zpdfv' ); ?>" tabindex="32" data-l10n-id="open_file">
+								<span data-l10n-id="open_file_label"><?php _e( 'Open', 'zpdfv' ); ?></span>
 							</button>
 
-							<button id="print" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_print', true ) ) :?>hidden<?php endif; ?> toolbarButton print hiddenMediumView" title="Print" tabindex="33" data-l10n-id="print">
-								<span data-l10n-id="print_label">Print</span>
+							<button id="print" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_print', true ) ) :?>hidden<?php endif; ?> toolbarButton print hiddenMediumView" title="<?php esc_attr_e( 'Print', 'zpdfv' ); ?>" tabindex="33" data-l10n-id="print">
+								<span data-l10n-id="print_label"><?php esc_attr_e( 'Print', 'zpdfv' ); ?></span>
 							</button>
 
-							<button id="download" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_download', true ) ) :?>hidden<?php endif; ?> toolbarButton download hiddenMediumView" title="Download" tabindex="34" data-l10n-id="download">
-								<span data-l10n-id="download_label">Download</span>
+							<button id="download" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_download', true ) ) :?>hidden<?php endif; ?> toolbarButton download hiddenMediumView" title="<?php esc_attr_e( 'Download', 'zpdfv' ); ?>" tabindex="34" data-l10n-id="download">
+								<span data-l10n-id="download_label"><?php _e( 'Download', 'zpdfv' ); ?></span>
 							</button>
-							<a href="#" id="viewBookmark" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_viewBookmark', true ) ) :?>hidden<?php endif; ?> toolbarButton bookmark hiddenSmallView" title="Current view (copy or open in new window)" tabindex="35" data-l10n-id="bookmark">
-								<span data-l10n-id="bookmark_label">Current View</span>
+							<a href="#" id="viewBookmark" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_viewBookmark', true ) ) :?>hidden<?php endif; ?> toolbarButton bookmark hiddenSmallView" title="<?php esc_attr_e( 'Current view (copy or open in new window)', 'zpdfv' ); ?>" tabindex="35" data-l10n-id="bookmark">
+								<span data-l10n-id="bookmark_label"><?php _e( 'Current view', 'zpdfv' ); ?></span>
 							</a>
 
 							<div class="verticalToolbarSeparator hiddenSmallView"></div>
 
-							<button id="secondaryToolbarToggle" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_secondaryToolbarToggle', true ) ) :?>hidden<?php endif; ?> toolbarButton" title="Tools" tabindex="36" data-l10n-id="tools">
-								<span data-l10n-id="tools_label">Tools</span>
+							<button id="secondaryToolbarToggle" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_secondaryToolbarToggle', true ) ) :?>hidden<?php endif; ?> toolbarButton" title="<?php esc_attr_e( 'Tools', 'zpdfv' ); ?>" tabindex="36" data-l10n-id="tools">
+								<span data-l10n-id="tools_label"><?php _e( 'Tools', 'zpdfv' ); ?></span>
 							</button>
 						</div>
 						<div id="toolbarViewerMiddle">
 							<div class="<?php if ( ! apply_filters( 'zaopdf_button_enable_zoomToggles', true ) ) :?>hidden<?php endif; ?> splitToolbarButton">
-								<button id="zoomOut" class="toolbarButton zoomOut" title="Zoom Out" tabindex="21" data-l10n-id="zoom_out">
-									<span data-l10n-id="zoom_out_label">Zoom Out</span>
+								<button id="zoomOut" class="toolbarButton zoomOut" title="<?php esc_attr_e( 'Zoom Out', 'zpdfv' ); ?>" tabindex="21" data-l10n-id="zoom_out">
+									<span data-l10n-id="zoom_out_label"><?php _e( 'Zoom Out', 'zpdfv' ); ?></span>
 								</button>
 								<div class="splitToolbarButtonSeparator"></div>
-								<button id="zoomIn" class="toolbarButton zoomIn" title="Zoom In" tabindex="22" data-l10n-id="zoom_in">
-									<span data-l10n-id="zoom_in_label">Zoom In</span>
+								<button id="zoomIn" class="toolbarButton zoomIn" title="<?php esc_attr_e( 'Zoom In', 'zpdfv' ); ?>" tabindex="22" data-l10n-id="zoom_in">
+									<span data-l10n-id="zoom_in_label"><?php _e( 'Zoom In', 'zpdfv' ); ?></span>
 								</button>
 							</div>
 							<span id="scaleSelectContainer" class="<?php if ( ! apply_filters( 'zaopdf_button_enable_scaleSelect', true ) ) :?>hidden<?php endif; ?> dropdownToolbarButton">
-								<select id="scaleSelect" title="Zoom" tabindex="23" data-l10n-id="zoom">
-									<option id="pageAutoOption" title="" value="auto" selected="selected" data-l10n-id="page_scale_auto">Automatic Zoom</option>
-									<option id="pageActualOption" title="" value="page-actual" data-l10n-id="page_scale_actual">Actual Size</option>
-									<option id="pageFitOption" title="" value="page-fit" data-l10n-id="page_scale_fit">Fit Page</option>
-									<option id="pageWidthOption" title="" value="page-width" data-l10n-id="page_scale_width">Full Width</option>
+								<select id="scaleSelect" title="<?php esc_attr_e( 'Zoom', 'zpdfv' ); ?>" tabindex="23" data-l10n-id="zoom">
+									<option id="pageAutoOption" title="" value="auto" selected="selected" data-l10n-id="page_scale_auto"><?php _e( 'Automatic Zoom', 'zpdfv' ); ?></option>
+									<option id="pageActualOption" title="" value="page-actual" data-l10n-id="page_scale_actual"><?php _e( 'Actual Size', 'zpdfv' ); ?></option>
+									<option id="pageFitOption" title="" value="page-fit" data-l10n-id="page_scale_fit"><?php _e( 'Fit Page', 'zpdfv' ); ?></option>
+									<option id="pageWidthOption" title="" value="page-width" data-l10n-id="page_scale_width"><?php _e( 'Full Width', 'zpdfv' ); ?></option>
 									<option id="customScaleOption" title="" value="custom" disabled="disabled" hidden="true"></option>
 									<option title="" value="0.5" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 50 }'>50%</option>
 									<option title="" value="0.75" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 75 }'>75%</option>
@@ -233,13 +233,13 @@ See https://github.com/adobe-type-tools/cmap-resources
 			</div>
 
 			<menu type="context" id="viewerContextMenu">
-				<menuitem id="contextFirstPage" label="First Page"
+				<menuitem id="contextFirstPage" label="<?php esc_attr_e( 'First Page', 'zpdfv' ); ?>"
 				data-l10n-id="first_page"></menuitem>
-				<menuitem id="contextLastPage" label="Last Page"
+				<menuitem id="contextLastPage" label="<?php esc_attr_e( 'Last Page', 'zpdfv' ); ?>"
 				data-l10n-id="last_page"></menuitem>
-				<menuitem id="contextPageRotateCw" label="Rotate Clockwise"
+				<menuitem id="contextPageRotateCw" label="<?php esc_attr_e( 'Rotate Clockwise', 'zpdfv' ); ?>"
 				data-l10n-id="page_rotate_cw"></menuitem>
-				<menuitem id="contextPageRotateCcw" label="Rotate Counter-Clockwise"
+				<menuitem id="contextPageRotateCcw" label="<?php esc_attr_e( 'Rotate Counter-Clockwise', 'zpdfv' ); ?>"
 				data-l10n-id="page_rotate_ccw"></menuitem>
 			</menu>
 
@@ -251,19 +251,19 @@ See https://github.com/adobe-type-tools/cmap-resources
 				<div id="errorMessageLeft">
 					<span id="errorMessage"></span>
 					<button id="errorShowMore" data-l10n-id="error_more_info">
-						More Information
+						<?php _e( 'More Information', 'zpdfv' ); ?>
 					</button>
 					<button id="errorShowLess" data-l10n-id="error_less_info" hidden='true'>
-						Less Information
+						<?php _e( 'Less Information', 'zpdfv' ); ?>
 					</button>
 				</div>
 				<div id="errorMessageRight">
 					<button id="errorClose" data-l10n-id="error_close">
-						Close
+						<?php _e( 'Close', 'zpdfv' ); ?>
 					</button>
 				</div>
 				<div class="clearBoth"></div>
-				<textarea id="errorMoreInfo" hidden='true' readonly="readonly"></textarea>
+				<textarea id="errorMoreInfo" hidden="true" readonly="readonly"></textarea>
 			</div>
 		</div> <!-- mainContainer -->
 
@@ -271,47 +271,47 @@ See https://github.com/adobe-type-tools/cmap-resources
 			<div id="passwordOverlay" class="container hidden">
 				<div class="dialog">
 					<div class="row">
-						<p id="passwordText" data-l10n-id="password_label">Enter the password to open this PDF file:</p>
+						<p id="passwordText" data-l10n-id="password_label"><?php _e( 'Enter the password to open this PDF file:', 'zpdfv' ); ?></p>
 					</div>
 					<div class="row">
 						<!-- The type="password" attribute is set via script, to prevent warnings in Firefox for all http:// documents. -->
 						<input id="password" class="toolbarField">
 					</div>
 					<div class="buttonRow">
-						<button id="passwordCancel" class="overlayButton"><span data-l10n-id="password_cancel">Cancel</span></button>
-						<button id="passwordSubmit" class="overlayButton"><span data-l10n-id="password_ok">OK</span></button>
+						<button id="passwordCancel" class="overlayButton"><span data-l10n-id="password_cancel"><?php _e( 'Cancel', 'zpdfv' ); ?></span></button>
+						<button id="passwordSubmit" class="overlayButton"><span data-l10n-id="password_ok"><?php _e( 'OK', 'zpdfv' ); ?></span></button>
 					</div>
 				</div>
 			</div>
 			<div id="documentPropertiesOverlay" class="container hidden">
 				<div class="dialog">
 					<div class="row">
-						<span data-l10n-id="document_properties_file_name">File name:</span> <p id="fileNameField">-</p>
+						<span data-l10n-id="document_properties_file_name"><?php _e( 'File name:', 'zpdfv' ); ?></span> <p id="fileNameField">-</p>
 					</div>
 					<div class="row">
-						<span data-l10n-id="document_properties_file_size">File size:</span> <p id="fileSizeField">-</p>
+						<span data-l10n-id="document_properties_file_size"><?php _e( 'File size:', 'zpdfv' ); ?></span> <p id="fileSizeField">-</p>
 					</div>
 					<div class="separator"></div>
 					<div class="row">
-						<span data-l10n-id="document_properties_title">Title:</span> <p id="titleField">-</p>
+						<span data-l10n-id="document_properties_title"><?php _e( 'Title:', 'zpdfv' ); ?></span> <p id="titleField">-</p>
 					</div>
 					<div class="row">
-						<span data-l10n-id="document_properties_author">Author:</span> <p id="authorField">-</p>
+						<span data-l10n-id="document_properties_author"><?php _e( 'Author:', 'zpdfv' ); ?></span> <p id="authorField">-</p>
 					</div>
 					<div class="row">
-						<span data-l10n-id="document_properties_subject">Subject:</span> <p id="subjectField">-</p>
+						<span data-l10n-id="document_properties_subject"><?php _e( 'Subject:', 'zpdfv' ); ?></span> <p id="subjectField">-</p>
 					</div>
 					<div class="row">
-						<span data-l10n-id="document_properties_keywords">Keywords:</span> <p id="keywordsField">-</p>
+						<span data-l10n-id="document_properties_keywords"><?php _e( 'Keywords:', 'zpdfv' ); ?></span> <p id="keywordsField">-</p>
 					</div>
 					<div class="row">
-						<span data-l10n-id="document_properties_creation_date">Creation Date:</span> <p id="creationDateField">-</p>
+						<span data-l10n-id="document_properties_creation_date"><?php _e( 'Creation Date:', 'zpdfv' ); ?></span> <p id="creationDateField">-</p>
 					</div>
 					<div class="row">
-						<span data-l10n-id="document_properties_modification_date">Modification Date:</span> <p id="modificationDateField">-</p>
+						<span data-l10n-id="document_properties_modification_date"><?php _e( 'Modification Date:', 'zpdfv' ); ?></span> <p id="modificationDateField">-</p>
 					</div>
 					<div class="row">
-						<span data-l10n-id="document_properties_creator">Creator:</span> <p id="creatorField">-</p>
+						<span data-l10n-id="document_properties_creator"><?php _e( 'Creator:', 'zpdfv' ); ?></span> <p id="creatorField">-</p>
 					</div>
 					<div class="separator"></div>
 					<div class="row">
@@ -324,21 +324,21 @@ See https://github.com/adobe-type-tools/cmap-resources
 						<span data-l10n-id="document_properties_page_count">Page Count:</span> <p id="pageCountField">-</p>
 					</div>
 					<div class="buttonRow">
-						<button id="documentPropertiesClose" class="overlayButton"><span data-l10n-id="document_properties_close">Close</span></button>
+						<button id="documentPropertiesClose" class="overlayButton"><span data-l10n-id="document_properties_close"><?php _e( 'Close', 'zpdfv' ); ?></span></button>
 					</div>
 				</div>
 			</div>
 			<div id="printServiceOverlay" class="container hidden">
 				<div class="dialog">
 					<div class="row">
-						<span data-l10n-id="print_progress_message">Preparing document for printing…</span>
+						<span data-l10n-id="print_progress_message"><?php _e( 'Preparing document for printing…', 'zpdfv' ); ?></span>
 					</div>
 					<div class="row">
 						<progress value="0" max="100"></progress>
 						<span data-l10n-id="print_progress_percent" data-l10n-args='{ "progress": 0 }' class="relative-progress">0%</span>
 					</div>
 					<div class="buttonRow">
-						<button id="printCancel" class="overlayButton"><span data-l10n-id="print_progress_close">Cancel</span></button>
+						<button id="printCancel" class="overlayButton"><span data-l10n-id="print_progress_close"><?php _e( 'Cancel', 'zpdfv' ); ?></span></button>
 					</div>
 				</div>
 			</div>
