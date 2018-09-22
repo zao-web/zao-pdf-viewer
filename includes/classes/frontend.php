@@ -109,7 +109,7 @@ class ZPDF_Viewer_Frontend {
 
 		$output .= '<style type="text/css">'. $css .'</style>';
 
-		$src = add_query_arg( 'file', urlencode( esc_url_raw( $atts['url'] ) ), self::zpdf_url() );
+		$src = apply_filters( 'zaopdf_iframe_src', add_query_arg( 'file', urlencode( esc_url_raw( $atts['url'] ) ), self::zpdf_url() ), $atts );
 
 		$iframe = '<div id="zpdf-'. $index .'"><iframe class="noscrolling zpdf-iframe" width="100%" height="100%" scrolling="no" frameborder="0" name="pdfv" src="'. esc_url( $src ) . '"></iframe></div>';
 
