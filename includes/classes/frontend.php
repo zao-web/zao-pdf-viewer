@@ -56,6 +56,7 @@ class ZPDF_Viewer_Frontend {
 	 * Handles the pdf viewer shortcode output.
 	 *
 	 * ZPDF_Viewer_Frontend::get_instance()->output( 'url' => 'siteurl/pdf.pdf' )
+	 * ZPDF_Viewer_Frontend::get_instance()->output( 'pdf' => 'data:application/pdf;base64,JVBERi0xLjQ...==' )
 	 *
 	 * @since  0.1.0
 	 *
@@ -69,23 +70,26 @@ class ZPDF_Viewer_Frontend {
 
 		$atts = shortcode_atts( array(
 			'url'    => '',
+			'pdf'    => '',
 			'id'     => 0,
 			'height' => floatval( zpdfv_get_option( 'height', 56.25 ) ),
 		), $atts, $this->tag );
 
 		// No PDF URL or Attachment ID, then we will just bail.
-		if ( empty( $atts['url'] ) && empty( $atts['id'] ) ) {
+		if ( empty( $atts['url'] ) && empty( $atts['id'] ) && empty( $atts['pdf'] ) ) {
 			return $output;
 		}
 
 		$atts['index'] = $index;
 
 		if ( $atts['id'] ) {
-			$atts['url'] = set_url_scheme( wp_get_attachment_url( absint( $atts['id'] ), 'full' ) );
+			$atts['url'] = set_url_scheme( wp_get_attachment_url( absint( $atts['id'] ) ) );
+		} elseif ( '' !== $atts['pdf'] && false === strpos( $atts['pdf'], 'data:application/pdf;base64,' ) ) {
+			$atts['pdf'] = 'data:application/pdf;base64,' . $atts['pdf'];
 		}
 
 		// If we couldn't find a PDF URL, then we bail.
-		if ( empty( $atts['url'] ) ) {
+		if ( empty( $atts['url'] ) && empty( $atts['pdf'] ) ) {
 			return $output;
 		}
 
@@ -114,10 +118,15 @@ class ZPDF_Viewer_Frontend {
 			$atts['url'] = urldecode( $atts['url'] );
 		}
 
-		$url = apply_filters( 'zaopdf_file_url', esc_url_raw( $atts['url'] ), $atts );
-		$src = add_query_arg( 'file', urlencode( $url ), self::zpdf_url() );
+		if ( '' !== $atts['pdf'] ) {
+			$src = $atts['pdf'];
+		} else {
+			$url = apply_filters( 'zaopdf_file_url', esc_url_raw( $atts['url'] ), $atts );
+			$src = add_query_arg( 'file', urlencode( $url ), self::zpdf_url() );
+		}
+		$src = apply_filters( 'zaopdf_iframe_src', $src, $atts );
 
-		$iframe = '<div id="zpdf-'. $index .'"><iframe class="noscrolling zpdf-iframe" width="100%" height="100%" scrolling="no" frameborder="0" name="pdfv" src="'. esc_url( $src ) . '"></iframe></div>';
+	$iframe = '<div id="zpdf-'. $index .'"><iframe class="noscrolling zpdf-iframe" width="100%" height="100%" scrolling="no" frameborder="0" name="pdfv" src="'. $src . '"></iframe></div>';
 
 		$output .= apply_filters( 'zaopdf_iframe_markup', $iframe, $atts );
 
